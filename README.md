@@ -12,7 +12,7 @@ Too many of us watch Food Network on television, only to never actually make any
 
 There's a million cooking apps on the market today, but most of them are just recipe dictionaries, and don't interactively take you through the process of preparing the dish step by step. Rather they just throw a list of ingredients followed by all the steps in a single block.
 
-We wanted to combine video and a more interactive/step-by-step process for cooking into a simple FireTV app. Simply find the recipe or food area you want to make, and we'll break it down into visual steps that you can follow along with on your television.
+We wanted to combine video and a more interactive/step-by-step process for cooking into a multimodal app. Simply find the recipe or food area you want to make, and we'll break it down into visual steps that you can follow along with on your television.
 
 ## What it does
 
@@ -22,8 +22,9 @@ We wanted to combine video and a more interactive/step-by-step process for cooki
 
 ## How we built it
 
-FireTV
-Recipes.com API
+* FireTV
+* Recipes.com 
+* API
 
 ## Challenges we ran into
 
