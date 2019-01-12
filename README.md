@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="img/sidecook.png" alt="SideCook" width="400">
+  <img src="img/side_cook_3_2.png" alt="SideCook" width="400">
 </p>
 
 # SideCook
