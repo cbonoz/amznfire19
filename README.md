@@ -28,7 +28,7 @@ We wanted to combine video and a more interactive/step-by-step process for cooki
 
 ## Challenges we ran into
 
-Integrating the APL library.
+Integrating the Amazon APL library for voice. Learning how to use the HTML5 canvas for the TV interface.
 
 ## Accomplishments that we're proud of
 It works.
