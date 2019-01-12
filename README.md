@@ -46,6 +46,9 @@ Put SideCook's model and UI under more strenuous user testing to figure out the 
 * https://developer.amazon.com/docs/app-submission/submitting-apps-to-amazon-appstore.html
 
 ## Other Resources
+* https://themealdb.com/
+* https://developer.amazon.com/blogs/alexa/post/2af6851b-0216-4e82-9aba-6fa2aec755d5/how-to-get-started-with-the-new-alexa-presentation-language-to-build-multimodal-alexa-skills
+* https://www.talkingtocomputers.com/apl-alexa-presentation-language
 * https://github.com/amzn/web-app-starter-kit-for-fire-tv
 * https://developer.edamam.com/
 * https://www.themealdb.com/
