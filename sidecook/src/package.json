@@ -1,0 +1,15 @@
+{
+  "name": "SideCook - Your Personal Recipe Assistant",
+  "version": "1.0.0",
+  "description": "SideCook will help you complete your favorite recipes: step by step",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SideCook",
+  "license": "ISC",
+  "dependencies": {
+    "ask-sdk-core": "^2.0.0",
+    "ask-sdk-model": "^1.0.0"
+  }
+}

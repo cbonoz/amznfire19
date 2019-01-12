@@ -41,5 +41,11 @@ How to decompose a structured API response into step by step screens onto a tele
 
 Put SideCook's model and UI under more strenuous user testing to figure out the most user friendly way to step through recipes on the television while you're actually cooking them.
 
+## Amazon Resources
+* https://developer.amazon.com/docs/fire-tv/getting-started-with-web-apps.html#using-web-app-tester-and-devtools 
+* https://developer.amazon.com/docs/app-submission/submitting-apps-to-amazon-appstore.html
+
 ## Other Resources
 * https://github.com/amzn/web-app-starter-kit-for-fire-tv
+* https://developer.edamam.com/
+* https://www.themealdb.com/
