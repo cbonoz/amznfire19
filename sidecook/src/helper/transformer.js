@@ -34,6 +34,12 @@ function tranformMealDB({ data }) {
 
     return ingredients
   }
+
+  // split on new lines
+  const buildInstructionsSimple = data => data.strInstructions.split(/[\r\n]+/)
+
+  // split on periods (sentences)
+  const buildInstructionsComplex = data => data.strInstructions.split(/\s*\.\s*/)
   
   return {
     name: data.strMeal,
@@ -41,7 +47,9 @@ function tranformMealDB({ data }) {
     region: data.strArea,
     thumb: data.strMealThumb,
     video: data.strYoutube,
-    ingredients: buildIngredients(data, findNumberOfIngredients(data))
+    ingredients: buildIngredients(data, findNumberOfIngredients(data)),
+    instructions: buildInstructionsSimple(data),
+    complexInstructions: buildInstructionsComplex(data)
   }
 }
 
@@ -50,9 +58,13 @@ function transformToStandardRecipe(input) {
   if (input.source === 'themealdb') {
     return tranformMealDB(input)
   }
+
+  throw new Error('unknown recipe source')
 }
 
+module.exports = transformToStandardRecipe
 
+// test
 const mealExmaple = {
   "idMeal": "52819",
   "strMeal": "Cajun spiced fish tacos",
@@ -106,9 +118,9 @@ const mealExmaple = {
   "dateModified": null
 }
 
-console.log(
-  transformToStandardRecipe({
-    source: 'themealdb',
-    data: mealExmaple
-  })
-)
+// console.log(
+//   transformToStandardRecipe({
+//     source: 'themealdb',
+//     data: mealExmaple
+//   })
+// )

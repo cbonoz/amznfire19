@@ -1,24 +1,24 @@
-'use strict'
-const library = (function () {
-    const axios = require('axios')
+const axios = require('axios')
 
-    const RECIPE_API_KEY = `1`
-    const RECIPE_BASE_URL = `https://www.themealdb.com/api/json/v1/${RECIPE_API_KEY}/search.php`
+const RECIPE_API_KEY = `1`
+const RECIPE_BASE_URL = `https://www.themealdb.com/api/json/v1/${RECIPE_API_KEY}/search.php`
 
-    const random = (arr) => {
-        return arr[Math.round(Math.random() * (arr.length - 1))]
-    }
+const random = (arr) => {
+    return arr[Math.round(Math.random() * (arr.length - 1))]
+}
 
-    function getRecipes(queryString) {
-        const url = `${RECIPE_BASE_URL}?s=${queryString}`
-        return axios.get(url)
-    }
+function searchRecipes(queryString) {
+    const url = `${RECIPE_BASE_URL}?s=${queryString}`
+    return axios.get(url)
+        .then(response => response.data)
+}
 
-    return {
-        getRecipes,
-        random
-    }
 
-})()
-module.exports = library
+module.exports = {
+    searchRecipes,
+    random
+}
 
+
+// test
+//getRecipes('taco').then(console.log)
