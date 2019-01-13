@@ -1,5 +1,5 @@
 {
-  "name": "SideCook - Your Personal Recipe Assistant",
+  "name": "side-cook-your-personal-cook-assistant",
   "version": "1.0.0",
   "description": "SideCook will help you complete your favorite recipes: step by step",
   "main": "index.js",
