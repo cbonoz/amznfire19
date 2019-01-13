@@ -14,7 +14,7 @@ const buildIngredientsListData = data => {
           "type": "PlainText",
           "text": recipe.category
       },
-      "area": {
+      "region": {
         "type": "PlainText",
         "text": recipe.region
     },
@@ -33,7 +33,7 @@ const build = data => {
 
   return {
     MetaData,
-    IngredientList: {
+    RecipeList: {
       ...base,
       data: buildIngredientsListData(data)
     }

@@ -29,7 +29,7 @@ const LaunchRequestHandler = {
 const IngredientsRequestHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === "IngredientsIntent"
+      && handlerInput.requestEnvelope.request.intent.name === "IngredientIntent"
   },
   async handle(handlerInput) {
     const speechText = "Here are the ingredients for tacos"
@@ -44,7 +44,7 @@ const IngredientsRequestHandler = {
         document: ingredientsDocument,
         datasources: await handler.fetchIngredientsData()
       })
-      .getResponse();
+      .getResponse()
   }
 };
 
@@ -54,7 +54,10 @@ const SearchRequestHandler = {
       && handlerInput.requestEnvelope.request.intent.name === "SearchIntent"
   },
   async handle(handlerInput) {
-    const speechText = "Here are the recipes we found for tacos"
+
+    const slots = handlerInput.requestEnvelope.request.intent.slots
+    const searchTerm = slots && slots.Food && slots.Food.value || 'tacos'
+    const speechText = `Here are the recipes we found for ${searchTerm}`
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -63,8 +66,8 @@ const SearchRequestHandler = {
         type: 'Alexa.Presentation.APL.RenderDocument',
         token: 'pagerToken',
         version: '1.0',
-        document: ingredientsDocument,
-        datasources: await handler.fetchRecipes()
+        document: recipeDocument,
+        datasources: await handler.fetchRecipes(searchTerm)
       })
       .getResponse();
   }

@@ -17,12 +17,16 @@
                 },
                 {
                     "name": "SearchIntent",
-                    "slots": [],
+                    "slots": [
+                        {
+                            "name": "Food",
+                            "type": "AMAZON.Food"
+                        }
+                    ],
                     "samples": [
-                        "search",
-                        "search for recipe",
-                        "search for recipes",
-                        "search for food"
+                        "recipe of {Food}",
+                        "search for {Food}",
+                        "search"
                     ]
                 },
                 {

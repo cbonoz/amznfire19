@@ -316,7 +316,7 @@
               "backgroundImage": "${payload.MetaData.backgroundImage.sources[0].url}",
               "title": "${payload.MetaData.title}",
               "logo": "${payload.MetaData.logoUrl}",
-              "listData": "${payload.IngredientList.data}"
+              "listData": "${payload.RecipeList.data}"
           }
       ]
     }

@@ -10,7 +10,8 @@ const fetchIngredientsData = () => {
     .then(data => ingredientsFn(data.ingredients))
 }
 
-const fetchRecipes = (searchTerm = 'taco') => {
+const fetchRecipes = (searchTerm) => {
+
   return api.searchRecipes(searchTerm)
     .then(response => {
       let meals = response.data.meals
