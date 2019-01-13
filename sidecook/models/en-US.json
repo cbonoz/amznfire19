@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "pager karaoke device skill",
+            "invocationName": "my side cook",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -16,33 +16,13 @@
                     "samples": []
                 },
                 {
-                    "name": "PagerIntent",
+                    "name": "SearchIntent",
                     "slots": [],
                     "samples": [
-                        "pager",
-                        "show me pager",
-                        "show me pager template"
-                    ]
-                },
-                {
-                    "name": "KaraokeIntent",
-                    "slots": [],
-                    "samples": [
-                        "karaoke",
-                        "show me karaoke",
-                        "show me karaoke template"
-                    ]
-                },
-                {
-                    "name": "DeviceIntent",
-                    "slots": [],
-                    "samples": [
-                        "device",
-                        "devices",
-                        "show me device",
-                        "show me device template",
-                        "show me devices",
-                        "show me devices template"
+                        "search",
+                        "search for recipe",
+                        "search for recipes",
+                        "search for food"
                     ]
                 },
                 {
@@ -88,6 +68,18 @@
                 {
                     "name": "AMAZON.ScrollUpIntent",
                     "samples": []
+                },
+                {
+                    "name": "IngredientIntent",
+                    "slots": [],
+                    "samples": [
+                        "list the ingredients",
+                        "what are the ingredients",
+                        "how many ingredients",
+                        "ingredient",
+                        "ingredients",
+                        "show me the ingredients"
+                    ]
                 }
             ],
             "types": []
