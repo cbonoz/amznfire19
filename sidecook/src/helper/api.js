@@ -13,7 +13,6 @@ function searchRecipes(queryString) {
         .then(response => ({ data: response.data, source: 'themealdb'}))
 }
 
-
 module.exports = {
     searchRecipes,
     random

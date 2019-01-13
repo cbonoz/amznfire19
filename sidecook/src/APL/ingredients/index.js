@@ -1,5 +1,5 @@
 
-const WithMetaData = require('./WithMetaData')
+const MetaData = require('./meta')
 
 const buildIngredientsListData = data => {
 
@@ -28,6 +28,7 @@ const build = data => {
   const base = buildBase(data)
 
   return {
+    MetaData,
     IngredientList: {
       ...base,
       data: buildIngredientsListData(data)
@@ -35,4 +36,4 @@ const build = data => {
   }
 }
 
-module.exports = WithMetaData(build)
+module.exports = build
