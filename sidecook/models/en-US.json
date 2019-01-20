@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "my side cook",
+            "invocationName": "side cook",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -27,6 +27,31 @@
                         "recipe of {Food}",
                         "search for {Food}",
                         "search"
+                    ]
+                },
+                {
+                    "name": "SelectRecipeIntent",
+                    "slots": [
+                        {
+                            "name": "Recipe",
+                            "type": "AMAZON.Food"
+                        }
+                    ],
+                    "samples": [
+                        "{Recipe}"
+                    ]
+                },
+                {
+                    "name": "SelectStepNumberIntent",
+                    "slots": [
+                        {
+                            "name": "StepNumber",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "Step {StepNumber}",
+                        "Go to step {StepNumber}"
                     ]
                 },
                 {
