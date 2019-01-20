@@ -1,5 +1,5 @@
 
-function tranformMealDB({ data }) {
+function transformMealDB({ data }) {
 
   const INGREDIENT_NAME_PREFIX = "strIngredient"
   const INGREDIENT_MEASURE_PREFIX = "strMeasure"
@@ -56,7 +56,7 @@ function tranformMealDB({ data }) {
 
 function transformToStandardRecipe(input) {
   if (input.source === 'themealdb') {
-    return tranformMealDB(input)
+    return transformMealDB(input)
   }
 
   throw new Error('unknown recipe source')
@@ -65,7 +65,7 @@ function transformToStandardRecipe(input) {
 module.exports = transformToStandardRecipe
 
 // test
-const mealExmaple = {
+const mealExample = {
   "idMeal": "52819",
   "strMeal": "Cajun spiced fish tacos",
   "strCategory": "Seafood",

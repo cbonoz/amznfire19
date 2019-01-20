@@ -9,8 +9,7 @@ const random = (arr) => {
 
 function searchRecipes(queryString) {
     const url = `${RECIPE_BASE_URL}?s=${queryString}`
-    return axios.get(url)
-        .then(response => ({ data: response.data, source: 'themealdb'}))
+    return axios.get(url).then(response => ({ data: response.data, source: 'themealdb'}))
 }
 
 module.exports = {

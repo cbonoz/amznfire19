@@ -1,7 +1,7 @@
 const api = require('./helper/api') 
 const transform = require('./helper/transformer') 
 const ingredientsFn = require('./APL/ingredients')
-const recipleSearchFn = require('./APL/RecipeSearch')
+const recipeSearchFn = require('./APL/RecipeSearch')
 
 const fetchIngredientsData = () => {
   return api.searchRecipes('taco')
@@ -11,14 +11,13 @@ const fetchIngredientsData = () => {
 }
 
 const fetchRecipes = (searchTerm) => {
-
   return api.searchRecipes(searchTerm)
     .then(response => {
-      let meals = response.data.meals
-
-      return meals.map(meal => transform({ data: meal, source: response.source }))
+      const meals = response.data.meals
+      const transformedMeals = meals.map(meal => transform({ data: meal, source: response.source }))
+      return transformedMeals
     })
-    .then(recipleSearchFn)
+    // .then(recipeSearchFn)
 }
 
 module.exports = {

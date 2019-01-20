@@ -4,18 +4,6 @@
             "invocationName": "side cook",
             "intents": [
                 {
-                    "name": "AMAZON.CancelIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.HelpIntent",
-                    "samples": []
-                },
-                {
-                    "name": "AMAZON.StopIntent",
-                    "samples": []
-                },
-                {
                     "name": "SearchIntent",
                     "slots": [
                         {
@@ -26,7 +14,11 @@
                     "samples": [
                         "recipe of {Food}",
                         "search for {Food}",
-                        "search"
+                        "search for {Food} recipes",
+                        "Find {Food} recipes",
+                        "{Food} recipes",
+                        "search {Food} recipes",
+                        "{Food} recipe"
                     ]
                 },
                 {
@@ -38,7 +30,20 @@
                         }
                     ],
                     "samples": [
-                        "{Recipe}"
+                        "start {Recipe}",
+                        "select {Recipe}",
+                        "launch {Recipe}"
+                    ]
+                },
+                {
+                    "name": "IngredientIntent",
+                    "slots": [],
+                    "samples": [
+                        "list the ingredients",
+                        "what are the ingredients",
+                        "ingredient",
+                        "ingredients",
+                        "show me the ingredients"
                     ]
                 },
                 {
@@ -53,6 +58,18 @@
                         "Step {StepNumber}",
                         "Go to step {StepNumber}"
                     ]
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
                 },
                 {
                     "name": "AMAZON.MoreIntent",
@@ -97,18 +114,6 @@
                 {
                     "name": "AMAZON.ScrollUpIntent",
                     "samples": []
-                },
-                {
-                    "name": "IngredientIntent",
-                    "slots": [],
-                    "samples": [
-                        "list the ingredients",
-                        "what are the ingredients",
-                        "how many ingredients",
-                        "ingredient",
-                        "ingredients",
-                        "show me the ingredients"
-                    ]
                 }
             ],
             "types": []
