@@ -46,13 +46,13 @@ const IngredientsRequestHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        token: 'pagerToken',
-        version: '1.0',
-        document: ingredientsDocument,
-        datasources: ingredients
-      })
+      // .addDirective({
+      //   type: 'Alexa.Presentation.APL.RenderDocument',
+      //   token: 'pagerToken',
+      //   version: '1.0',
+      //   document: ingredientsDocument,
+      //   datasources: ingredients
+      // })
       .getResponse()
   }
 }
@@ -94,13 +94,13 @@ const SearchRequestHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        token: 'pagerToken',
-        version: '1.0',
-        document: recipeSearchDocument,
-        datasources: recipes
-      })
+      // .addDirective({
+      //   type: 'Alexa.Presentation.APL.RenderDocument',
+      //   token: 'pagerToken',
+      //   version: '1.0',
+      //   document: recipeSearchDocument,
+      //   datasources: recipes
+      // })
       .getResponse()
   }
 }
@@ -143,20 +143,19 @@ const SelectRecipeHandler = {
     attributes.currentStep = currentStep
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    // TODO: add speechtext introducing the selected recipe (and possibly the first step / ingredients).
     const repromptText = `${currentRecipe.instructions[currentStep]}.`
     const speechText = `You selected ${currentRecipe.name}. Let's start! ${repromptText}`
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(repromptText)
-      .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        token: 'pagerToken',
-        version: '1.0',
-        document: recipeStepsDocument,
-        datasources: { currentRecipe, "currentStep": 0 }
-      })
+      // .addDirective({
+      //   type: 'Alexa.Presentation.APL.RenderDocument',
+      //   token: 'pagerToken',
+      //   version: '1.0',
+      //   document: recipeStepsDocument,
+      //   datasources: { currentRecipe, "currentStep": 0 }
+      // })
       .getResponse()
   }
 }
@@ -187,13 +186,13 @@ const SelectStepHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        token: 'pagerToken',
-        version: '1.0',
-        document: recipeStepsDocument,
-        datasources: { currentRecipe, currentStep }
-      })
+      // .addDirective({
+      //   type: 'Alexa.Presentation.APL.RenderDocument',
+      //   token: 'pagerToken',
+      //   version: '1.0',
+      //   document: recipeStepsDocument,
+      //   datasources: { currentRecipe, currentStep }
+      // })
       .getResponse()
 
   }
@@ -225,13 +224,13 @@ const NextStepHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        token: 'pagerToken',
-        version: '1.0',
-        document: recipeStepsDocument,
-        datasources: { currentRecipe, currentStep }
-      })
+      // .addDirective({
+      //   type: 'Alexa.Presentation.APL.RenderDocument',
+      //   token: 'pagerToken',
+      //   version: '1.0',
+      //   document: recipeStepsDocument,
+      //   datasources: { currentRecipe, currentStep }
+      // })
       .getResponse()
   }
 }

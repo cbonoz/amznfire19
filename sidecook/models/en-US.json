@@ -27,9 +27,18 @@
                         {
                             "name": "Recipe",
                             "type": "AMAZON.Food"
+                        },
+                        {
+                            "name": "RecipeNumber",
+                            "type": "AMAZON.NUMBER"
                         }
                     ],
                     "samples": [
+                        "select the {RecipeNumber} recipe",
+                        "launch the {RecipeNumber} recipe",
+                        "select {RecipeNumber} recipe",
+                        "launch {RecipeNumber} recipe",
+                        "start {RecipeNumber} recipe",
                         "start {Recipe}",
                         "select {Recipe}",
                         "launch {Recipe}",
