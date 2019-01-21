@@ -136,7 +136,7 @@ const SelectRecipeHandler = {
       ]
     }
     const fuse = new Fuse(bestRecipes, searchOptions)
-    const currentRecipe = fuse.search(searchTerm)
+    const currentRecipe = fuse.search(searchTerm)[0]
     attributes.bestRecipes = undefined
     attributes.currentRecipe = currentRecipe
     attributes.currentStep = 0
