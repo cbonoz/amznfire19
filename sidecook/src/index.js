@@ -137,14 +137,19 @@ const SelectRecipeHandler = {
     }
     const fuse = new Fuse(bestRecipes, searchOptions)
     const currentRecipe = fuse.search(searchTerm)[0]
-    attributes.bestRecipes = undefined
+    delete attributes.bestRecipes
     attributes.currentRecipe = currentRecipe
-    attributes.currentStep = 0
+    const currentStep = 0
+    attributes.currentStep = currentStep
     handlerInput.attributesManager.setSessionAttributes(attributes)
+
+    // TODO: add speechtext introducing the selected recipe (and possibly the first step / ingredients).
+    const repromptText = `${currentRecipe.instructions[currentStep]}.`
+    const speechText = `You selected ${currentRecipe.name}. Let's start! ${repromptText}`
 
     return handlerInput.responseBuilder
       .speak(speechText)
-      .reprompt(speechText)
+      .reprompt(repromptText)
       .addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
         token: 'pagerToken',

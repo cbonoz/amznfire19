@@ -32,7 +32,8 @@
                     "samples": [
                         "start {Recipe}",
                         "select {Recipe}",
-                        "launch {Recipe}"
+                        "launch {Recipe}",
+                        "i want {Recipe}"
                     ]
                 },
                 {
