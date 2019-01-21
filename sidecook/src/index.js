@@ -26,8 +26,11 @@ const LaunchRequestHandler = {
 
 const IngredientsRequestHandler = {
   canHandle(handlerInput) {
+    const attributes = handlerInput.attributesManager.getSessionAttributes()
+
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === "IngredientIntent"
+      && attributes.currentRecipe
   },
   async handle(handlerInput) {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
@@ -40,8 +43,7 @@ const IngredientsRequestHandler = {
     const ingredients = currentRecipe.ingredients
     const recipeName = currentRecipe.name
 
-    const ingredientString = ingredients.join(', ')
-
+    const ingredientString = ingredients.map(({name, measure}) => `${measure}, ${name}`).join(', ')
     const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}`
 
     return handlerInput.responseBuilder
@@ -80,7 +82,6 @@ const SearchRequestHandler = {
 
     const bestRecipes = recipes.slice(0, Math.min(3, recipes.length))
     attributes.bestRecipes = bestRecipes
-    attributes.currentStep = 0
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     const bestRecipeString = bestRecipes.map(recipe => recipe.name).join(', ')
@@ -123,7 +124,7 @@ const SelectRecipeHandler = {
     }
 
     const slots = handlerInput.requestEnvelope.request.intent.slots
-    const searchTerm = slots && slots.Recipe && slots.Recipe.value
+    const recipeSearch = slots && slots.Recipe && slots.Recipe.value
 
     const searchOptions = {
       shouldSort: true,
@@ -137,15 +138,16 @@ const SelectRecipeHandler = {
       ]
     }
     const fuse = new Fuse(bestRecipes, searchOptions)
-    const currentRecipe = fuse.search(searchTerm)[0]
+    const currentRecipe = fuse.search(recipeSearch)[0]
     delete attributes.bestRecipes
     attributes.currentRecipe = currentRecipe
-    const currentStep = 0
-    attributes.currentStep = currentStep
+    attributes.instructionStep = 0
+    attributes.ingredientStep = 0
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    const repromptText = `${currentRecipe.instructions[currentStep]}.`
-    const speechText = `You selected ${currentRecipe.name}. Let's start! ${repromptText}`
+    
+    const repromptText = "Would you like to hear the ingredient list, or start the instructions?"
+    const speechText = `You selected ${currentRecipe.name}. ${repromptText}`
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -155,7 +157,7 @@ const SelectRecipeHandler = {
       //   token: 'pagerToken',
       //   version: '1.0',
       //   document: recipeStepsDocument,
-      //   datasources: { currentRecipe, "currentStep": 0 }
+      //   datasources: { currentRecipe, "instructionStep": 0 }
       // })
       .getResponse()
   }
@@ -175,13 +177,13 @@ const SelectStepHandler = {
     }
 
     const slots = handlerInput.requestEnvelope.request.intent.slots
-    const currentStep = slots && slots.StepNumber && slots.StepNumber.value
-    if (!currentStep || currentStep < 0 || currentStep >= currentRecipe.instructions.length) {
+    const instructionStep = slots && slots.StepNumber && slots.StepNumber.value
+    if (!instructionStep || instructionStep < 0 || instructionStep >= currentRecipe.instructions.length) {
       return CustomErrorHandler.handle(handlerInput, `Congratulations, You finished the meal! Ask me to search for another recipe!`)
     }
 
-    const speechText = currentRecipe.instructions[currentStep]
-    attributes.currentStep = currentStep
+    const speechText = currentRecipe.instructions[instructionStep]
+    attributes.instructionStep = instructionStep
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     return handlerInput.responseBuilder
@@ -192,7 +194,7 @@ const SelectStepHandler = {
       //   token: 'pagerToken',
       //   version: '1.0',
       //   document: recipeStepsDocument,
-      //   datasources: { currentRecipe, currentStep }
+      //   datasources: { currentRecipe, instructionStep }
       // })
       .getResponse()
 
@@ -213,13 +215,13 @@ const NextStepHandler = {
       return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
     }
 
-    const currentStep = attributes.currentStep + 1
-    if (currentStep >= currentRecipe.instructions.length) {
+    const instructionStep = attributes.instructionStep + 1
+    if (instructionStep >= currentRecipe.instructions.length) {
       return CustomErrorHandler.handle(handlerInput, `Congratulations, You finished the meal! Ask me to search for another recipe!`)
     }
 
-    const speechText = currentRecipe.instructions[currentStep]
-    attributes.currentStep = currentStep
+    const speechText = currentRecipe.instructions[instructionStep]
+    attributes.instructionStep = instructionStep
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     return handlerInput.responseBuilder
@@ -230,7 +232,7 @@ const NextStepHandler = {
       //   token: 'pagerToken',
       //   version: '1.0',
       //   document: recipeStepsDocument,
-      //   datasources: { currentRecipe, currentStep }
+      //   datasources: { currentRecipe, instructionStep }
       // })
       .getResponse()
   }
