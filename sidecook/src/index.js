@@ -232,7 +232,44 @@ const NextStepHandler = {
       return CustomErrorHandler.handle(handlerInput, `Congratulations, You finished the meal! Ask me to search for another recipe!`)
     }
 
-    const speechText = currentRecipe.instructions[instructionStep]
+    const speechText = `Step ${step + 1}: ${currentRecipe.instructions[step]}`
+    attributes.instructionStep = instructionStep
+    handlerInput.attributesManager.setSessionAttributes(attributes)
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      // .addDirective({
+      //   type: 'Alexa.Presentation.APL.RenderDocument',
+      //   token: 'pagerToken',
+      //   version: '1.0',
+      //   document: recipeStepsDocument,
+      //   datasources: { currentRecipe, instructionStep }
+      // })
+      .getResponse()
+  }
+}
+
+const PrevStepHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === "AMAZON.PreviousIntent"
+  },
+  async handle(handlerInput) {
+    const attributes = handlerInput.attributesManager.getSessionAttributes()
+
+    const currentRecipe = attributes.currentRecipe
+
+    if (!currentRecipe) {
+      return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
+    }
+
+    const instructionStep = attributes.instructionStep - 1
+    if (instructionStep < 0) {
+      instructionStep = 0
+    }
+
+    const speechText = `Step ${step + 1}: ${currentRecipe.instructions[step]}`
     attributes.instructionStep = instructionStep
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
@@ -285,6 +322,7 @@ exports.handler = skillBuilder
     SearchRequestHandler,
     SelectStepHandler,
     SelectRecipeHandler,
+    PrevStepHandler,
     NextStepHandler,
     IngredientsRequestHandler
   )
