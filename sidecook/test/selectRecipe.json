@@ -1,0 +1,256 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.fb628f4d-5664-48d5-85bd-54c2810ef8e5",
+		"application": {
+			"applicationId": "amzn1.ask.skill.f960213d-3009-4982-bb8b-2c47ad1f1288"
+		},
+		"attributes": {
+			"currentStep": 0,
+			"bestRecipes": [
+				{
+					"name": "Cajun spiced fish tacos",
+					"category": "Seafood",
+					"region": "Mexican",
+					"thumb": "https://www.themealdb.com/images/media/meals/uvuyxu1503067369.jpg",
+					"video": "https://www.youtube.com/watch?v=N4EdUt0Ou48",
+					"ingredients": [
+						{
+							"name": "cajun",
+							"measure": "2 tbsp"
+						},
+						{
+							"name": "cayenne pepper",
+							"measure": "1 tsp"
+						},
+						{
+							"name": "white fish",
+							"measure": "4 fillets"
+						},
+						{
+							"name": "vegetable oil",
+							"measure": "1 tsp"
+						},
+						{
+							"name": "flour tortilla",
+							"measure": "8"
+						},
+						{
+							"name": "avocado",
+							"measure": "1 sliced"
+						},
+						{
+							"name": "little gem lettuce",
+							"measure": "2 shredded"
+						},
+						{
+							"name": "spring onion",
+							"measure": "4 shredded"
+						},
+						{
+							"name": "salsa",
+							"measure": "1 x 300ml"
+						},
+						{
+							"name": "sour cream",
+							"measure": "1 pot"
+						},
+						{
+							"name": "lemon",
+							"measure": "1"
+						},
+						{
+							"name": "garlic",
+							"measure": "1 clove finely chopped"
+						}
+					],
+					"instructions": [
+						"Cooking in a cajun spice and cayenne pepper marinade makes this fish super succulent and flavoursome. Top with a zesty dressing and serve in a tortilla for a quick, fuss-free main that's delightfully summery.",
+						"On a large plate, mix the cajun spice and cayenne pepper with a little seasoning and use to coat the fish all over.",
+						"Heat a little oil in a frying pan, add in the fish and cook over a medium heat until golden. Reduce the heat and continue frying until the fish is cooked through, about 10 minutes. Cook in batches if you don’t have enough room in the pan.",
+						"Meanwhile, prepare the dressing by combining all the ingredients with a little seasoning.",
+						"Soften the tortillas by heating in the microwave for 5-10 seconds. Pile high with the avocado, lettuce and spring onion, add a spoonful of salsa, top with large flakes of fish and drizzle over the dressing."
+					],
+					"complexInstructions": [
+						"Cooking in a cajun spice and cayenne pepper marinade makes this fish super succulent and flavoursome",
+						"Top with a zesty dressing and serve in a tortilla for a quick, fuss-free main that's delightfully summery",
+						"On a large plate, mix the cajun spice and cayenne pepper with a little seasoning and use to coat the fish all over",
+						"Heat a little oil in a frying pan, add in the fish and cook over a medium heat until golden",
+						"Reduce the heat and continue frying until the fish is cooked through, about 10 minutes",
+						"Cook in batches if you don’t have enough room in the pan",
+						"Meanwhile, prepare the dressing by combining all the ingredients with a little seasoning",
+						"Soften the tortillas by heating in the microwave for 5-10 seconds",
+						"Pile high with the avocado, lettuce and spring onion, add a spoonful of salsa, top with large flakes of fish and drizzle over the dressing",
+						""
+					]
+				},
+				{
+					"name": "Crock Pot Chicken Baked Tacos",
+					"category": "Chicken",
+					"region": "Mexican",
+					"thumb": "https://www.themealdb.com/images/media/meals/ypxvwv1505333929.jpg",
+					"video": "https://www.youtube.com/watch?v=oqL0mLDBzS4",
+					"ingredients": [
+						{
+							"name": "Chicken Breasts",
+							"measure": "4 - 6"
+						},
+						{
+							"name": "Vinaigrette Dressing",
+							"measure": "1 bottle"
+						},
+						{
+							"name": "Cumin",
+							"measure": "1½ tablespoon"
+						},
+						{
+							"name": "Smoked Paprika",
+							"measure": "1 tablespoon"
+						},
+						{
+							"name": "Garlic",
+							"measure": "1 teaspoon"
+						},
+						{
+							"name": "Refried Beans",
+							"measure": "1 can"
+						},
+						{
+							"name": "Hard Taco Shells",
+							"measure": "12"
+						},
+						{
+							"name": "Shredded Mexican Cheese",
+							"measure": "2 cups"
+						},
+						{
+							"name": "Grape Tomatoes",
+							"measure": "Halved"
+						},
+						{
+							"name": "Jalapeno",
+							"measure": "Sliced and Seeded"
+						},
+						{
+							"name": "Avocado",
+							"measure": "Peeled and Sliced"
+						},
+						{
+							"name": "Green Salsa",
+							"measure": "2 tablespoons"
+						},
+						{
+							"name": "Sour Cream",
+							"measure": "3 tablespoons"
+						},
+						{
+							"name": "Milk",
+							"measure": "1 tablespoon"
+						}
+					],
+					"instructions": [
+						"Put the uncooked chicken breasts in the crock pot. Pour the full bottle of salad dressing over the chicken. Sprinkle the rest of the ingredients over the top and mix them in a bit with a spoon.",
+						"Cover your crock pot with the lid and cook on high for 4 hours.",
+						"Remove all the chicken breasts from the crock pot and let cool.",
+						"Shred the chicken breasts and move to a glass bowl.",
+						"Pour most of the liquid over the shredded chicken.",
+						"FOR THE TACOS:",
+						"Make the guacamole sauce by mixing the avocado and green salsa together. Pour the guacamole mixture through a strainer until smooth and transfer to a squeeze bottle. Cut the tip off the lid of the squeeze bottle to make the opening more wide if needed.",
+						"Make the sour cream sauce by mixing the sour cream and milk together until you get a more liquid sour cream sauce. Transfer to a squeeze bottle.",
+						"In a 9x 13 glass baking dish, fill all 12+ tacos with a layer of refried beans, cooked chicken and shredded cheese.",
+						"Bake at 450 for 10-15 minutes just until the cheese is melted and bubbling.",
+						"Out of the oven top all the tacos with the sliced grape tomaotes, jalapeno and cilantro.",
+						"Finish with a drizzle of guacamole and sour cream.",
+						"Enjoy!"
+					],
+					"complexInstructions": [
+						"Put the uncooked chicken breasts in the crock pot",
+						"Pour the full bottle of salad dressing over the chicken",
+						"Sprinkle the rest of the ingredients over the top and mix them in a bit with a spoon",
+						"Cover your crock pot with the lid and cook on high for 4 hours",
+						"Remove all the chicken breasts from the crock pot and let cool",
+						"Shred the chicken breasts and move to a glass bowl",
+						"Pour most of the liquid over the shredded chicken",
+						"FOR THE TACOS:\r\nMake the guacamole sauce by mixing the avocado and green salsa together",
+						"Pour the guacamole mixture through a strainer until smooth and transfer to a squeeze bottle",
+						"Cut the tip off the lid of the squeeze bottle to make the opening more wide if needed",
+						"Make the sour cream sauce by mixing the sour cream and milk together until you get a more liquid sour cream sauce",
+						"Transfer to a squeeze bottle",
+						"In a 9x 13 glass baking dish, fill all 12+ tacos with a layer of refried beans, cooked chicken and shredded cheese",
+						"Bake at 450 for 10-15 minutes just until the cheese is melted and bubbling",
+						"Out of the oven top all the tacos with the sliced grape tomaotes, jalapeno and cilantro",
+						"Finish with a drizzle of guacamole and sour cream",
+						"Enjoy!"
+					]
+				}
+			]
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AFUYATXQTMLIOU2CJXXTASERTA3MAQ2GQ2TMADMLAMHXLN5ZYMOTWLJI6RLC5XUVGODZSM7K2AUKTHWZPDYNB4NHCQFPNZ32HCPH4SLYAHANAFGQ53Y4MHCBSEGPY34KZN5NLMDE2EQN7TBGZRENWMETBXZN6PZW6NVFJ55SEXSS4Z7WJB2AV3EAKRRBIWICDDUJCTRDEJ3S2DQ"
+		}
+	},
+	"context": {
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.f960213d-3009-4982-bb8b-2c47ad1f1288"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AFUYATXQTMLIOU2CJXXTASERTA3MAQ2GQ2TMADMLAMHXLN5ZYMOTWLJI6RLC5XUVGODZSM7K2AUKTHWZPDYNB4NHCQFPNZ32HCPH4SLYAHANAFGQ53Y4MHCBSEGPY34KZN5NLMDE2EQN7TBGZRENWMETBXZN6PZW6NVFJ55SEXSS4Z7WJB2AV3EAKRRBIWICDDUJCTRDEJ3S2DQ"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AE2BVOF3XMMXD2KONR2JANR233ZMY7QMAPWLJGGEHSU4ZOX7A45FYDDODJAQ4FUERSJOK7374LDWHG2DJM6XBAYGN2PXTHKUXVYMPYXFWSF3S7PQHDEAXTPC2RRKDIZDR2C4RTPGOUH5WLNQ6PAGRZSALZTU7IOUCMI6MJTZU3YKVL2P5OHVQ",
+				"supportedInterfaces": {
+					"Alexa.Presentation.APL": {
+						"runtime": {
+							"maxVersion": "1.0"
+						}
+					}
+				}
+			},
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLmY5NjAyMTNkLTMwMDktNDk4Mi1iYjhiLTJjNDdhZDFmMTI4OCIsImV4cCI6MTU0ODEwOTk0NywiaWF0IjoxNTQ4MTA2MzQ3LCJuYmYiOjE1NDgxMDYzNDcsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUUyQlZPRjNYTU1YRDJLT05SMkpBTlIyMzNaTVk3UU1BUFdMSkdHRUhTVTRaT1g3QTQ1RllERE9ESkFRNEZVRVJTSk9LNzM3NExEV0hHMkRKTTZYQkFZR04yUFhUSEtVWFZZTVBZWEZXU0YzUzdQUUhERUFYVFBDMlJSS0RJWkRSMkM0UlRQR09VSDVXTE5RNlBBR1JaU0FMWlRVN0lPVUNNSTZNSlRaVTNZS1ZMMlA1T0hWUSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGVVlBVFhRVE1MSU9VMkNKWFhUQVNFUlRBM01BUTJHUTJUTUFETUxBTUhYTE41WllNT1RXTEpJNlJMQzVYVVZHT0RaU003SzJBVUtUSFdaUERZTkI0TkhDUUZQTlozMkhDUEg0U0xZQUhBTkFGR1E1M1k0TUhDQlNFR1BZMzRLWk41TkxNREUyRVFON1RCR1pSRU5XTUVUQlhaTjZQWlc2TlZGSjU1U0VYU1M0WjdXSkIyQVYzRUFLUlJCSVdJQ0REVUpDVFJERUozUzJEUSJ9fQ.OMke87fVGmqGbJxoO1TPP10yabE5xhMUr3J3rbkG6WlVEVP0YGlq2ZCY_jmxShhOchw2ozAbdgCKMjyszdU5BJ7_6bTLZnnx8d-aFHV0eRwvSb2fd_0znS3yBlCpJ67vCjWgN9Uug_vDsJ5Xdqxyn9Qsep55CrIsuzWs_5tQhYJIC6yckPLd5_XBXW1OdXqWWI3_WlMLsbfs6gUO-40p2h4Qf-B4d-KrT5DwuLAxbP39xHZCMfOfHym8qT2fDqfVGqz0hxnlUIYZ1GK7TMVZO5M2p1oD5AzpkMEBUZMQeFkJvrVv63TQpNs6dJTS3ozBp2HqIfBzh0nRQ8FD_iofKg"
+		},
+		"Viewport": {
+			"experiences": [
+				{
+					"arcMinuteWidth": 246,
+					"arcMinuteHeight": 144,
+					"canRotate": false,
+					"canResize": false
+				}
+			],
+			"shape": "RECTANGLE",
+			"pixelWidth": 1024,
+			"pixelHeight": 600,
+			"dpi": 160,
+			"currentPixelWidth": 1024,
+			"currentPixelHeight": 600,
+			"touch": [
+				"SINGLE"
+			]
+		}
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.fd60f0bc-3069-4a70-a45e-f67122e1f097",
+		"timestamp": "2019-01-21T21:32:27Z",
+		"locale": "en-US",
+		"intent": {
+			"name": "SelectRecipeIntent",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"Recipe": {
+					"name": "Recipe",
+					"value": "crock pot chicken",
+					"confirmationStatus": "NONE",
+					"source": "USER"
+				},
+				"RecipeNumber": {
+					"name": "RecipeNumber",
+					"confirmationStatus": "NONE"
+				}
+			}
+		}
+	}
+}

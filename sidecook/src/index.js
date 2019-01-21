@@ -3,6 +3,7 @@ const Alexa = require('ask-sdk-core')
 const ingredientsDocument = require('./APL/ingredients/document')
 const recipeSearchDocument = require('./APL/RecipeSearch/document')
 const recipeStepsDocument = require('./APL/RecipeSteps/document')
+const Fuse = require('fuse.js')
 
 const handler = require('./handler')
 
