@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "side cook",
+            "invocationName": "my side cook",
             "intents": [
                 {
                     "name": "SearchIntent",
@@ -62,9 +62,15 @@
                         {
                             "name": "StepNumber",
                             "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "StepNumberOrdinal",
+                            "type": "AMAZON.Ordinal"
                         }
                     ],
                     "samples": [
+                        "{StepNumberOrdinal} step",
+                        "go to the {StepNumberOrdinal} step",
                         "Step {StepNumber}",
                         "Go to step {StepNumber}"
                     ]

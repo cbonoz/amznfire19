@@ -166,7 +166,8 @@ const SelectRecipeHandler = {
 const SelectStepHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === "SelectStepIntent"
+      && (handlerInput.requestEnvelope.request.intent.name === "SelectStepNumberIntent"
+      || handlerInput.requestEnvelope.request.intent.name === "InstructionIntent")
   },
   async handle(handlerInput) {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
@@ -176,14 +177,25 @@ const SelectStepHandler = {
       return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
     }
 
-    const slots = handlerInput.requestEnvelope.request.intent.slots
-    const instructionStep = slots && slots.StepNumber && slots.StepNumber.value
-    if (!instructionStep || instructionStep < 0 || instructionStep >= currentRecipe.instructions.length) {
+    let step = -1
+    
+    if (handlerInput.requestEnvelope.request.intent.name === "InstructionIntent") {
+      step = attributes.instructionStep
+    } else {
+      const slots = handlerInput.requestEnvelope.request.intent.slots
+      step = slots && slots.StepNumber && slots.StepNumber.value
+        || slots && slots.StepNumberOrdinal && slots.StepNumberOrdinal.value
+    }
+
+    if ((!step && step != 0) || step < 0 || step >= currentRecipe.instructions.length) {
       return CustomErrorHandler.handle(handlerInput, `Congratulations, You finished the meal! Ask me to search for another recipe!`)
     }
 
-    const speechText = currentRecipe.instructions[instructionStep]
-    attributes.instructionStep = instructionStep
+    // conver to number
+    step = +step
+
+    const speechText = `Step ${step + 1}: ${currentRecipe.instructions[step]}`
+    attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     return handlerInput.responseBuilder
