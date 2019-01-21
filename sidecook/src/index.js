@@ -43,8 +43,8 @@ const IngredientsRequestHandler = {
     const ingredients = currentRecipe.ingredients
     const recipeName = currentRecipe.name
 
-    const ingredientString = ingredients.map(({name, measure}) => `${measure}, ${name}`).join(', ')
-    const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}`
+    const ingredientString = ingredients.map(({name, measure}) => `${measure} ${name}`).join(', ')
+    const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}. Would you like to hear those again or start the instructions?`
 
     return handlerInput.responseBuilder
       .speak(speechText)

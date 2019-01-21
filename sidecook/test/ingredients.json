@@ -1,0 +1,167 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.ca6335d5-3d32-48e7-8c96-b7ad386effc1",
+		"application": {
+			"applicationId": "amzn1.ask.skill.f960213d-3009-4982-bb8b-2c47ad1f1288"
+		},
+		"attributes": {
+			"currentRecipe": {
+				"name": "Crock Pot Chicken Baked Tacos",
+				"category": "Chicken",
+				"region": "Mexican",
+				"thumb": "https://www.themealdb.com/images/media/meals/ypxvwv1505333929.jpg",
+				"video": "https://www.youtube.com/watch?v=oqL0mLDBzS4",
+				"ingredients": [
+					{
+						"name": "Chicken Breasts",
+						"measure": "4 - 6"
+					},
+					{
+						"name": "Vinaigrette Dressing",
+						"measure": "1 bottle"
+					},
+					{
+						"name": "Cumin",
+						"measure": "1½ tablespoon"
+					},
+					{
+						"name": "Smoked Paprika",
+						"measure": "1 tablespoon"
+					},
+					{
+						"name": "Garlic",
+						"measure": "1 teaspoon"
+					},
+					{
+						"name": "Refried Beans",
+						"measure": "1 can"
+					},
+					{
+						"name": "Hard Taco Shells",
+						"measure": "12"
+					},
+					{
+						"name": "Shredded Mexican Cheese",
+						"measure": "2 cups"
+					},
+					{
+						"name": "Grape Tomatoes",
+						"measure": "Halved"
+					},
+					{
+						"name": "Jalapeno",
+						"measure": "Sliced and Seeded"
+					},
+					{
+						"name": "Avocado",
+						"measure": "Peeled and Sliced"
+					},
+					{
+						"name": "Green Salsa",
+						"measure": "2 tablespoons"
+					},
+					{
+						"name": "Sour Cream",
+						"measure": "3 tablespoons"
+					},
+					{
+						"name": "Milk",
+						"measure": "1 tablespoon"
+					}
+				],
+				"instructions": [
+					"Put the uncooked chicken breasts in the crock pot. Pour the full bottle of salad dressing over the chicken. Sprinkle the rest of the ingredients over the top and mix them in a bit with a spoon.",
+					"Cover your crock pot with the lid and cook on high for 4 hours.",
+					"Remove all the chicken breasts from the crock pot and let cool.",
+					"Shred the chicken breasts and move to a glass bowl.",
+					"Pour most of the liquid over the shredded chicken.",
+					"FOR THE TACOS:",
+					"Make the guacamole sauce by mixing the avocado and green salsa together. Pour the guacamole mixture through a strainer until smooth and transfer to a squeeze bottle. Cut the tip off the lid of the squeeze bottle to make the opening more wide if needed.",
+					"Make the sour cream sauce by mixing the sour cream and milk together until you get a more liquid sour cream sauce. Transfer to a squeeze bottle.",
+					"In a 9x 13 glass baking dish, fill all 12+ tacos with a layer of refried beans, cooked chicken and shredded cheese.",
+					"Bake at 450 for 10-15 minutes just until the cheese is melted and bubbling.",
+					"Out of the oven top all the tacos with the sliced grape tomaotes, jalapeno and cilantro.",
+					"Finish with a drizzle of guacamole and sour cream.",
+					"Enjoy!"
+				],
+				"complexInstructions": [
+					"Put the uncooked chicken breasts in the crock pot",
+					"Pour the full bottle of salad dressing over the chicken",
+					"Sprinkle the rest of the ingredients over the top and mix them in a bit with a spoon",
+					"Cover your crock pot with the lid and cook on high for 4 hours",
+					"Remove all the chicken breasts from the crock pot and let cool",
+					"Shred the chicken breasts and move to a glass bowl",
+					"Pour most of the liquid over the shredded chicken",
+					"FOR THE TACOS:\r\nMake the guacamole sauce by mixing the avocado and green salsa together",
+					"Pour the guacamole mixture through a strainer until smooth and transfer to a squeeze bottle",
+					"Cut the tip off the lid of the squeeze bottle to make the opening more wide if needed",
+					"Make the sour cream sauce by mixing the sour cream and milk together until you get a more liquid sour cream sauce",
+					"Transfer to a squeeze bottle",
+					"In a 9x 13 glass baking dish, fill all 12+ tacos with a layer of refried beans, cooked chicken and shredded cheese",
+					"Bake at 450 for 10-15 minutes just until the cheese is melted and bubbling",
+					"Out of the oven top all the tacos with the sliced grape tomaotes, jalapeno and cilantro",
+					"Finish with a drizzle of guacamole and sour cream",
+					"Enjoy!"
+				]
+			},
+			"instructionStep": 0,
+			"ingredientStep": 0
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AFUYATXQTMLIOU2CJXXTASERTA3MAQ2GQ2TMADMLAMHXLN5ZYMOTWLJI6RLC5XUVGODZSM7K2AUKTHWZPDYNB4NHCQFPNZ32HCPH4SLYAHANAFGQ53Y4MHCBSEGPY34KZN5NLMDE2EQN7TBGZRENWMETBXZN6PZW6NVFJ55SEXSS4Z7WJB2AV3EAKRRBIWICDDUJCTRDEJ3S2DQ"
+		}
+	},
+	"context": {
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.f960213d-3009-4982-bb8b-2c47ad1f1288"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AFUYATXQTMLIOU2CJXXTASERTA3MAQ2GQ2TMADMLAMHXLN5ZYMOTWLJI6RLC5XUVGODZSM7K2AUKTHWZPDYNB4NHCQFPNZ32HCPH4SLYAHANAFGQ53Y4MHCBSEGPY34KZN5NLMDE2EQN7TBGZRENWMETBXZN6PZW6NVFJ55SEXSS4Z7WJB2AV3EAKRRBIWICDDUJCTRDEJ3S2DQ"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AE2BVOF3XMMXD2KONR2JANR233ZMY7QMAPWLJGGEHSU4ZOX7A45FYDDODJAQ4FUERSJOK7374LDWHG2DJM6XBAYGN2PXTHKUXVYMPYXFWSF3S7PQHDEAXTPC2RRKDIZDR2C4RTPGOUH5WLNQ6PAGRZSALZTU7IOUCMI6MJTZU3YKVL2P5OHVQ",
+				"supportedInterfaces": {
+					"Alexa.Presentation.APL": {
+						"runtime": {
+							"maxVersion": "1.0"
+						}
+					}
+				}
+			},
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLmY5NjAyMTNkLTMwMDktNDk4Mi1iYjhiLTJjNDdhZDFmMTI4OCIsImV4cCI6MTU0ODExMjY1MSwiaWF0IjoxNTQ4MTA5MDUxLCJuYmYiOjE1NDgxMDkwNTEsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUUyQlZPRjNYTU1YRDJLT05SMkpBTlIyMzNaTVk3UU1BUFdMSkdHRUhTVTRaT1g3QTQ1RllERE9ESkFRNEZVRVJTSk9LNzM3NExEV0hHMkRKTTZYQkFZR04yUFhUSEtVWFZZTVBZWEZXU0YzUzdQUUhERUFYVFBDMlJSS0RJWkRSMkM0UlRQR09VSDVXTE5RNlBBR1JaU0FMWlRVN0lPVUNNSTZNSlRaVTNZS1ZMMlA1T0hWUSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGVVlBVFhRVE1MSU9VMkNKWFhUQVNFUlRBM01BUTJHUTJUTUFETUxBTUhYTE41WllNT1RXTEpJNlJMQzVYVVZHT0RaU003SzJBVUtUSFdaUERZTkI0TkhDUUZQTlozMkhDUEg0U0xZQUhBTkFGR1E1M1k0TUhDQlNFR1BZMzRLWk41TkxNREUyRVFON1RCR1pSRU5XTUVUQlhaTjZQWlc2TlZGSjU1U0VYU1M0WjdXSkIyQVYzRUFLUlJCSVdJQ0REVUpDVFJERUozUzJEUSJ9fQ.hWT76_iAtz2D2DcIKJKRBU4TrTGtQ4ukL0DNrbQxkxItVCIcS9nikywW2zbop4Xmdfk8rTmsVkp0QQxgsRGqVjg5TLDOpUxAuEMJZS6JM6G2MRQJRZOC8hTJNVwkPkLmPkAStvOAfHo7JVxYS8XBrxxoZZ6xYK9fhX8KPB1w_GCiqdbcWOLg_65kJamm61zrvEWhBVjrPc6AJKnLcyYiyM3AZ37PTNqpUt9ACNspTd34MBDywxGXx99yr9vXMv3m9-uZSGRE6M5rp_Veg5pPII8FMgMSxqFRnJHkB3rx1-oCgnpKdYoFTOz-_2V9uDdUas9vgukq7sjIpElZ6MXr3w"
+		},
+		"Viewport": {
+			"experiences": [
+				{
+					"arcMinuteWidth": 246,
+					"arcMinuteHeight": 144,
+					"canRotate": false,
+					"canResize": false
+				}
+			],
+			"shape": "RECTANGLE",
+			"pixelWidth": 1024,
+			"pixelHeight": 600,
+			"dpi": 160,
+			"currentPixelWidth": 1024,
+			"currentPixelHeight": 600,
+			"touch": [
+				"SINGLE"
+			]
+		}
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.5b587091-3513-49fc-b60e-f40a06998cce",
+		"timestamp": "2019-01-21T22:17:31Z",
+		"locale": "en-US",
+		"intent": {
+			"name": "IngredientIntent",
+			"confirmationStatus": "NONE"
+		}
+	}
+}

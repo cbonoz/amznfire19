@@ -124,6 +124,22 @@
                 {
                     "name": "AMAZON.ScrollUpIntent",
                     "samples": []
+                },
+                {
+                    "name": "InstructionIntent",
+                    "slots": [],
+                    "samples": [
+                        "read the instructions",
+                        "read me the instructions",
+                        "list the instructions",
+                        "list instructions",
+                        "what are instructions",
+                        "what are the instructions",
+                        "start cooking",
+                        "start cooking instructions",
+                        "start instructions",
+                        "start the instructions"
+                    ]
                 }
             ],
             "types": []
