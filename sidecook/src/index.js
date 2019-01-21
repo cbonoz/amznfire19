@@ -327,4 +327,4 @@ exports.handler = skillBuilder
     IngredientsRequestHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
-  .create()
+  .create() // change this to .lambda() when uploaded

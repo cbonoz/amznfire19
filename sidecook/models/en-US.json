@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "my side cook",
+            "invocationName": "side cook",
             "intents": [
                 {
                     "name": "SearchIntent",
