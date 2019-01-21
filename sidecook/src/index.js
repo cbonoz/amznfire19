@@ -74,8 +74,8 @@ const SearchRequestHandler = {
     }
 
     const recipes = await handler.fetchRecipes(searchTerm)
-    console.log('recipes', recipes)
-    console.log('searchTerm', searchTerm)
+    // console.log('recipes', recipes)
+    // console.log('searchTerm', searchTerm)
 
     const bestRecipes = recipes.slice(0, Math.min(3, recipes.length))
     attributes.bestRecipes = bestRecipes
@@ -274,4 +274,4 @@ exports.handler = skillBuilder
     IngredientsRequestHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
-  .lambda()
+  .create()

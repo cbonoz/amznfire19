@@ -10,9 +10,11 @@ if (!input) {
   process.exit()
 }
 
-const output = entry.handler(input)
-//console.log(util.inspect(output, {showHidden: false, depth: null}))
-console.log(output)
+entry.handler.invoke(input)
+  .then(response => {
+    console.log(util.inspect(response, {showHidden: false, depth: null}))
+  })
+
 
 
 
