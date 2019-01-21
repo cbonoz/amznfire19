@@ -227,13 +227,13 @@ const NextStepHandler = {
       return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
     }
 
-    const instructionStep = attributes.instructionStep + 1
-    if (instructionStep >= currentRecipe.instructions.length) {
+    const step = attributes.instructionStep + 1
+    if (step >= currentRecipe.instructions.length) {
       return CustomErrorHandler.handle(handlerInput, `Congratulations, You finished the meal! Ask me to search for another recipe!`)
     }
 
     const speechText = `Step ${step + 1}: ${currentRecipe.instructions[step]}`
-    attributes.instructionStep = instructionStep
+    attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     return handlerInput.responseBuilder
@@ -253,7 +253,7 @@ const NextStepHandler = {
 const PrevStepHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === "AMAZON.PreviousIntent"
+      && handlerInput.requestEnvelope.request.intent.name === "AMAZON.PrevIntent"
   },
   async handle(handlerInput) {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
@@ -264,13 +264,13 @@ const PrevStepHandler = {
       return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
     }
 
-    const instructionStep = attributes.instructionStep - 1
-    if (instructionStep < 0) {
-      instructionStep = 0
+    let step = attributes.instructionStep - 1
+    if (step < 0) {
+      step = 0
     }
 
     const speechText = `Step ${step + 1}: ${currentRecipe.instructions[step]}`
-    attributes.instructionStep = instructionStep
+    attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     return handlerInput.responseBuilder
