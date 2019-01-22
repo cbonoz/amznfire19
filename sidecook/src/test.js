@@ -1,12 +1,12 @@
 const transform = require('./helper/transformer') 
 const buildIngredients = require('./APL/ingredients')
 const api = require('./helper/api') 
-const handler = require('./handler') 
+const helper = require('./helper') 
 
 const query = process.argv[2] || 'sandwich'
 
 // node test searchTerm
-handler.fetchRecipes(query)
+helper.fetchRecipes(query)
   .then(data => {
     console.log(data)
   })
