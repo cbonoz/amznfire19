@@ -138,7 +138,7 @@
             }
         },
         "layouts": {
-            "ListTemplate1": {
+            "IngredientList": {
                 "parameters": [
                     "backgroundImage",
                     "title",
@@ -331,15 +331,15 @@
             "item": [
                 {
                     "type": "ListTemplate1",
-                    "backgroundImage": "${payload.listTemplate1Metadata.backgroundImage.sources[0].url}",
-                    "title": "${payload.listTemplate1Metadata.title}",
-                    "logo": "${payload.listTemplate1Metadata.logoUrl}",
-                    "listData": "${payload.listTemplate1ListData.listPage.listItems}"
+                    "backgroundImage": "${payload.MetaData.backgroundImage.sources[0].url}",
+                    "title": "${payload.MetaData.title}",
+                    "logo": "${payload.IngredientList.logoUrl}",
+                    "listData": "${payload.IngredientList.listPage.listItems}"
                 }
             ]
         }
     },
-    "dataSources": {
+    "eldata": {
         "MetaData": {
             "type": "object",
             "objectId": "lt1Metadata",

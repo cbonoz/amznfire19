@@ -3,7 +3,12 @@ const Alexa = require('ask-sdk-core')
 const ingredientsDocument = require('./APL/ingredients/document.json')
 const recipeSearchDocument = require('./APL/RecipeSearch/document.json')
 const recipeStepsDocument = require('./APL/RecipeSteps/document.json')
-const helloDocument = require('./APL/Hello/document.json')
+const renderHelloDocument = require('./APL/Hello')
+const renderIngredientDocument = require('./APL/IngredientList')
+const renderStepDocument = require('./APL/RecipeStep')
+const renderSearchDocument = require('./APL/RecipeSearchResults')
+const renderWelcomeDocument = require('./APL/Welcome')
+const renderSampleDocument = require('./APL/Sample')
 const Fuse = require('fuse.js')
 
 const helper = require('./helper')
@@ -24,9 +29,31 @@ const LaunchRequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest'
   },
   async handle(handlerInput) {
+
+    const speechText = WELCOME_TEXT
+
+    if (!supportsAPL(handlerInput)) {
+      return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .getResponse() 
+    }
+    const welcomeBody = {
+      appName: APP_NAME,
+      appTip: helper.getRandomAlexaTip()
+    }
+    // const welcomeDirective = renderWelcomeDocument()
+    // console.log('welcomeDirective', JSON.stringify(welcomeDirective))
     return handlerInput.responseBuilder
-      .speak(WELCOME_TEXT)
-      .reprompt(WELCOME_TEXT)
+      .speak(speechText)
+      .reprompt(speechText)
+      .addDirective({
+        "type": 'Alexa.Presentation.APL.RenderDocument',
+        "version": '1.0',
+        "token": "welcome-doc",
+        "document": renderWelcomeDocument(welcomeBody),
+        "datasources": {}
+      })
       .getResponse()
   }
 }
@@ -63,12 +90,7 @@ const IngredientsRequestHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        version: '1.0',
-        document: ingredientsDocument,
-        datasources: helper.formatIngredientsData(ingredients)
-      })
+      .addDirective(renderIngredientDocument(currentRecipe))
       .getResponse()
   }
 }
@@ -123,12 +145,7 @@ const SearchRequestHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .addDirective({
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        version: '1.0',
-        document: recipeSearchDocument,
-        datasources: {}
-      })
+      .addDirective(renderSearchDocument({searchTerm, bestRecipes}))
       .getResponse()
   }
 }
@@ -226,21 +243,31 @@ const SelectStepHandler = {
     if (step < 0) {
       return CustomErrorHandler.handle(handlerInput, `Sorry I didn't get your step number quite right. For example, say step 0.`)
     }
-
-    const speechText = `Step ${step}: ${currentRecipe.instructions[step - 1]}`
+    const stepDescription = currentRecipe.instructions[step - 1]
+    const speechText = `Step ${step}: ${stepDescription}`
     attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
+
+
+    if (!supportsAPL(handlerInput)) {
+      return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .getResponse()
+    }
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      // .addDirective({
-      //   type: 'Alexa.Presentation.APL.RenderDocument',
-      //   token: 'pagerToken',
-      //   version: '1.0',
-      //   document: recipeStepsDocument,
-      //   datasources: { currentRecipe, instructionStep }
-      // })
+      .addDirective(renderStepDocument({
+          recipeName: currentRecipe.name,
+          recipeCategory: currentRecipe.recipeCategory,
+          recipeRegion: currentRecipe.region,
+          stepNumber: step,
+          stepCount: currentRecipe.instructions.length,
+          stepHint: helper.getRandomAlexaTip(),
+          stepDescription
+        }))
       .getResponse()
 
   }

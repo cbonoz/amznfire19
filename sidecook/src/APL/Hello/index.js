@@ -1,4 +1,6 @@
-{
+module.exports = (payload) => {
+  const {appName, appTip} = payload
+  return {
     "type": "APL",
     "version": "1.0",
     "import": [
@@ -14,8 +16,9 @@
       "items": [
         {
           "type": "Text",
-          "text": "Hello World"
-        }
+          "text": `Welcome to ${appName}: ${appTip}`
+        },
       ]
     }
   }
+}
