@@ -65,10 +65,9 @@ const IngredientsRequestHandler = {
       .reprompt(speechText)
       .addDirective({
         type: 'Alexa.Presentation.APL.RenderDocument',
-        token: 'pagerToken',
         version: '1.0',
         document: ingredientsDocument,
-        datasources: ingredients
+        datasources: helper.formatIngredientsData(ingredients)
       })
       .getResponse()
   }
@@ -170,8 +169,8 @@ const SelectRecipeHandler = {
     const currentRecipe = fuse.search(recipeSearch)[0]
     delete attributes.bestRecipes
     attributes.currentRecipe = currentRecipe
-    attributes.instructionStep = 0
-    attributes.ingredientStep = 0
+    attributes.instructionStep = 1
+    attributes.ingredientStep = 1
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     
@@ -329,7 +328,7 @@ const PrevStepHandler = {
 
 
 const StartOverHandler = {
-  canHandle() {
+  canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === "AMAZON.StartOverIntent"
   },

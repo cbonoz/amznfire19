@@ -80,6 +80,10 @@
                     "samples": []
                 },
                 {
+                    "name": "AMAZON.StartOverIntent",
+                    "samples": [] 
+                },
+                {
                     "name": "AMAZON.HelpIntent",
                     "samples": []
                 },
@@ -144,7 +148,8 @@
                         "start cooking",
                         "start cooking instructions",
                         "start instructions",
-                        "start the instructions"
+                        "start the instructions",
+                        "start the recipe"
                     ]
                 }
             ],

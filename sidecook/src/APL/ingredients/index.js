@@ -4,7 +4,8 @@ const MetaData = require('./meta')
 const buildIngredientsListData = data => {
 
   return data.map((ingredient, index) => ({
-    ordinalNumber: index + 1,
+    "listItemIdentifier": ingredient.name,
+    "ordinalNumber": index + 1,
     "textContent": {
       "primaryText": {
           "type": "PlainText",
@@ -31,7 +32,9 @@ const build = data => {
     MetaData,
     IngredientList: {
       ...base,
-      data: buildIngredientsListData(data)
+      listPage: {
+        listItems: buildIngredientsListData(data)
+      }
     }
   }
 }

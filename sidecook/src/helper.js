@@ -3,9 +3,9 @@ const transform = require('./helper/transformer')
 const ingredientsFn = require('./APL/ingredients')
 const recipeSearchFn = require('./APL/RecipeSearch')
 
-async function fetchIngredientsData(searchTerm) {
-  const response = await api.searchRecipes(searchTerm)
-  const res = transform({ data: response.data.meals[0], source: response.source })
+function formatIngredientsData(ingredients, title) {
+  const res = transform({ data: ingredients, source: response.source })
+  res.title = title
   return ingredientsFn(res)
 }
 
@@ -17,6 +17,6 @@ async function fetchRecipes(searchTerm) {
 }
 
 module.exports = {
-  fetchIngredientsData,
+  formatIngredientsData,
   fetchRecipes
 }
