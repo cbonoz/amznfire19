@@ -16,7 +16,7 @@ module.exports = (payload) => {
       "items": [
         {
           "type": "Text",
-          "text": `Welcome to ${appName}: ${appTip}`
+          "text": `Welcome to ${appName} ${appTip}`
         },
       ]
     }

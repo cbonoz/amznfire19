@@ -15,7 +15,7 @@ const helper = require('./helper')
 
 const APP_NAME = 'Side Cook'
 
-const ERROR_TEXT = `Sorry, I didn't understand the command. Try searching again!`
+const ERROR_TEXT = `Sorry, I didn't understand the command. Try asking for a recipe, or say "start over".`
 const WELCOME_TEXT = `Welcome to ${APP_NAME}, your personal cooking assistant. Let's find a recipe to make! For example, say 'sandwich recipes'.`
 
 function supportsAPL(handlerInput) {
@@ -39,8 +39,8 @@ const LaunchRequestHandler = {
       .getResponse() 
     }
     const welcomeBody = {
-      appName: APP_NAME,
-      appTip: helper.getRandomAlexaTip()
+      appName: WELCOME_TEXT,
+      appTip: "" // helper.getRandomAlexaTip()
     }
     // const welcomeDirective = renderWelcomeDocument()
     // console.log('welcomeDirective', JSON.stringify(welcomeDirective))
@@ -51,8 +51,7 @@ const LaunchRequestHandler = {
         "type": 'Alexa.Presentation.APL.RenderDocument',
         "version": '1.0',
         "token": "welcome-doc",
-        "document": renderWelcomeDocument(welcomeBody),
-        "datasources": {}
+        "document": renderHelloDocument(welcomeBody)
       })
       .getResponse()
   }
@@ -416,4 +415,4 @@ exports.handler = skillBuilder
     IngredientsRequestHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
-  .lambda() // change this to .lambda() when uploaded
+  .lambda() // create()
