@@ -47,6 +47,7 @@ module.exports = (payload) => {
               "type": "Text",
               "width": '100vw',
               "textAlign": "center",
+              "borderWidth": 10,
               "style": "textStylePrimary2",
               "text": appWelcome,
               "maxLines": 6
