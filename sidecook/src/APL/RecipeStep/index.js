@@ -13,6 +13,7 @@ module.exports = (payload) => {
     const backgroundImage = "https://d2o906d8ln7ui1.cloudfront.net/images/BT2_Background.png"
     const logoUrl = "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png"
 
+    const recipeText = `You're making ${recipeName}`
     const categoryText = recipeRegion || recipeCategory
 
     return {
@@ -171,7 +172,7 @@ module.exports = (payload) => {
                                             {
                                                 "type": "AlexaHeader",
                                                 "headerAttributionImage": logoUrl,
-                                                "headerTitle": recipeName
+                                                "headerTitle": recipeText
                                             },
                                             {
                                                 "type": "Text",
