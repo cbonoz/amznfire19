@@ -1,3 +1,5 @@
+const helper = require('../helpers')
+
 module.exports = (payload) => {
 
     const { bestRecipes, searchTerm } = payload
@@ -6,8 +8,8 @@ module.exports = (payload) => {
         backgroundSmall: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
         backgroundLarge: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
         "logoUrl": "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png",
-        
       }
+
     const recipeResultList = bestRecipes.map((recipe, i) => {
         return {
             "listItemIdentifier": recipe.name,
@@ -50,143 +52,7 @@ module.exports = (payload) => {
         "version": '1.0',
         "token": 'recipe-search-doc',
         "document": {
-            "type": "APL",
-            "version": "1.0",
-            "theme": "dark",
-            "import": [
-                {
-                    "name": "alexa-layouts",
-                    "version": "1.0.0"
-                }
-            ],
-            "resources": [
-                {
-                    "description": "Stock color for the light theme",
-                    "colors": {
-                        "colorTextPrimary": "#151920"
-                    }
-                },
-                {
-                    "description": "Stock color for the dark theme",
-                    "when": "${viewport.theme == 'dark'}",
-                    "colors": {
-                        "colorTextPrimary": "#f0f1ef"
-                    }
-                },
-                {
-                    "description": "Standard font sizes",
-                    "dimensions": {
-                        "textSizeBody": 48,
-                        "textSizePrimary": 27,
-                        "textSizeSecondary": 23,
-                        "textSizeDetails": 20,
-                        "textSizeSecondaryHint": 25
-                    }
-                },
-                {
-                    "description": "Common spacing values",
-                    "dimensions": {
-                        "spacingThin": 6,
-                        "spacingSmall": 12,
-                        "spacingMedium": 24,
-                        "spacingLarge": 48,
-                        "spacingExtraLarge": 72
-                    }
-                },
-                {
-                    "description": "Common margins and padding",
-                    "dimensions": {
-                        "marginTop": 40,
-                        "marginLeft": 60,
-                        "marginRight": 60,
-                        "marginBottom": 40
-                    }
-                }
-            ],
-            "styles": {
-                "textStyleBase": {
-                    "description": "Base font description; set color and core font family",
-                    "values": [
-                        {
-                            "color": "@colorTextPrimary",
-                            "fontFamily": "Amazon Ember"
-                        }
-                    ]
-                },
-                "textStyleBase0": {
-                    "description": "Thin version of basic font",
-                    "extend": "textStyleBase",
-                    "values": {
-                        "fontWeight": "100"
-                    }
-                },
-                "textStyleBase1": {
-                    "description": "Light version of basic font",
-                    "extend": "textStyleBase",
-                    "values": {
-                        "fontWeight": "300"
-                    }
-                },
-                "textStyleBase2": {
-                    "description": "Regular version of basic font",
-                    "extend": "textStyleBase",
-                    "values": {
-                        "fontWeight": "500"
-                    }
-                },
-                "mixinBody": {
-                    "values": {
-                        "fontSize": "@textSizeBody"
-                    }
-                },
-                "mixinPrimary": {
-                    "values": {
-                        "fontSize": "@textSizePrimary"
-                    }
-                },
-                "mixinDetails": {
-                    "values": {
-                        "fontSize": "@textSizeDetails"
-                    }
-                },
-                "mixinSecondary": {
-                    "values": {
-                        "fontSize": "@textSizeSecondary"
-                    }
-                },
-                "textStylePrimary": {
-                    "extend": [
-                        "textStyleBase1",
-                        "mixinPrimary"
-                    ]
-                },
-                "textStyleSecondary": {
-                    "extend": [
-                        "textStyleBase0",
-                        "mixinSecondary"
-                    ]
-                },
-                "textStyleBody": {
-                    "extend": [
-                        "textStyleBase1",
-                        "mixinBody"
-                    ]
-                },
-                "textStyleSecondaryHint": {
-                    "values": {
-                        "fontFamily": "Bookerly",
-                        "fontStyle": "italic",
-                        "fontSize": "@textSizeSecondaryHint",
-                        "color": "@colorTextPrimary"
-                    }
-                },
-                "textStyleDetails": {
-                    "extend": [
-                        "textStyleBase2",
-                        "mixinDetails"
-                    ]
-                }
-            },
+            ...helper.base(),
             "layouts": {
                 "FullHorizontalListItem": {
                     "parameters": [
@@ -255,7 +121,7 @@ module.exports = (payload) => {
                                 },
                                 {
                                     "type": "Text",
-                                    "text": "<b>${data.ordinal}.</b> ${data.textContent.primaryText.text}",
+                                    "text": "<b>${data.ordinalNumber}. </b>${data.textContent.primaryText.text}",
                                     "style": "textStyleSecondary",
                                     "maxLines": 1,
                                     "spacing": 12
@@ -271,13 +137,6 @@ module.exports = (payload) => {
                     ]
                 },
                 "ListTemplate2": {
-                    "parameters": [
-                        "backgroundImage",
-                        "title",
-                        "logo",
-                        "hintText",
-                        "listData"
-                    ],
                     "items": [
                         {
                             "when": "${viewport.shape == 'round'}",
@@ -306,19 +165,7 @@ module.exports = (payload) => {
                             "height": "100vh",
                             "width": "100vw",
                             "items": [
-                                {
-                                    "type": "Image",
-                                    "source": "${backgroundImage}",
-                                    "scale": "best-fill",
-                                    "width": "100vw",
-                                    "height": "100vh",
-                                    "position": "absolute"
-                                },
-                                {
-                                    "type": "AlexaHeader",
-                                    "headerTitle": "${title}",
-                                    "headerAttributionImage": "${logo}"
-                                },
+                                ...helper.header(`Results for ${searchTerm}`),
                                 {
                                     "type": "Sequence",
                                     "scrollDirection": "horizontal",
@@ -334,10 +181,7 @@ module.exports = (payload) => {
                                         }
                                     ]
                                 },
-                                {
-                                    "type": "AlexaFooter",
-                                    "footerHint": "${hintText}"
-                                }
+                                helper.footer(`Try, "Alexa, select ${bestRecipes[0].name}"`)
                             ]
                         }
                     ]
@@ -349,49 +193,12 @@ module.exports = (payload) => {
                 ],
                 "item": [
                     {
-                        "type": "ListTemplate2",
-                        "backgroundImage": "${payload.listTemplate2Metadata.backgroundImage.sources[0].url}",
-                        "title": "${payload.listTemplate2Metadata.title}",
-                        "hintText": "${payload.listTemplate2Metadata.hintText}",
-                        "logo": "${payload.listTemplate2Metadata.logoUrl}",
-                        "listData": "${payload.listTemplate2ListData.listItems}"
+                        "type": "ListTemplate2"
                     }
                 ]
             }
         },
         "dataSources": {
-            "listTemplate2Metadata": {
-                "type": "object",
-                "objectId": "lt1Metadata",
-                "backgroundImage": {
-                    "contentDescription": null,
-                    "smallSourceUrl": null,
-                    "largeSourceUrl": null,
-                    "sources": [
-                        {
-                            "url": "https://d2o906d8ln7ui1.cloudfront.net/images/LT2_Background.png",
-                            "size": "small",
-                            "widthPixels": 0,
-                            "heightPixels": 0
-                        },
-                        {
-                            "url": "https://d2o906d8ln7ui1.cloudfront.net/images/LT2_Background.png",
-                            "size": "large",
-                            "widthPixels": 0,
-                            "heightPixels": 0
-                        }
-                    ]
-                },
-                "title": `Results for ${searchTerm}`,
-                "logoUrl": data.logoUrl
-            },
-            "listTemplate2ListData": {
-                "type": "list",
-                "listId": "lt2Sample",
-                "totalNumberOfItems": bestRecipes.length,
-                "hintText": `Try, "Alexa, select ${bestRecipes[0].name}"`,
-                "listItems": recipeResultList
-            }
         }
     }
 }
