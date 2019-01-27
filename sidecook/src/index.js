@@ -39,7 +39,8 @@ const LaunchRequestHandler = {
       .getResponse() 
     }
     const welcomeBody = {
-      appName: WELCOME_TEXT,
+      appName: APP_NAME,
+      appMessage: WELCOME_TEXT,
       appTip: "" // helper.getRandomAlexaTip()
     }
     // const welcomeDirective = renderWelcomeDocument()
@@ -51,7 +52,7 @@ const LaunchRequestHandler = {
         "type": 'Alexa.Presentation.APL.RenderDocument',
         "version": '1.0',
         "token": "welcome-doc",
-        ...renderWelcomeDocument()
+        "document": renderHelloDocument(welcomeBody)
       })
       .getResponse()
   }
