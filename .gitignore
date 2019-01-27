@@ -1,6 +1,7 @@
 web-app-starter-kit-for-fire-tv
 .DS_Store
 sidecook/config.js
+sidecook/src.zip
 sidecook/node_modules
 sidecook/src/node_modules
 skill-sample-nodejs-quiz-game
