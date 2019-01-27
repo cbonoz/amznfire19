@@ -121,6 +121,10 @@ const SearchRequestHandler = {
     // console.log('recipes', recipes)
     // console.log('searchTerm', searchTerm)
 
+    if (!recipes || recipes.length == 0) {
+      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't find any results for ${searchTerm}. Try searching again!`)
+    }
+
     const bestRecipes = recipes.slice(0, Math.min(3, recipes.length))
     attributes.bestRecipes = bestRecipes
 
