@@ -1,12 +1,11 @@
 module.exports = (payload) => {
-  const {appName, appTip, appWelcome} = payload
+  const { appName, appTip, appWelcome } = payload
 
   const data = {
     backgroundSmall: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
     backgroundLarge: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
     "title": `Welcome to ${appName}!`,
-    "welcome": appWelcome,
-    "logoUrl": "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png"
+    "logoUrl": "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png",
   }
 
 
@@ -31,17 +30,25 @@ module.exports = (payload) => {
           "direction": "column",
           "items": [
             {
-                "type": "Image",
-                "source": `${data.backgroundLarge}`,
-                "scale": "best-fill",
-                "width": "100vw",
-                "height": "100vh",
-                "position": "absolute"
+              "type": "Image",
+              "source": `${data.backgroundLarge}`,
+              "scale": "best-fill",
+              "width": "100vw",
+              "height": "100vh",
+              "position": "absolute"
             },
             {
-                "type": "AlexaHeader",
-                "headerTitle": `${data.title}`,
-                "headerAttributionImage": `${data.logoUrl}`
+              "type": "AlexaHeader",
+              "headerTitle": `${data.title}`,
+              "headerAttributionImage": `${data.logoUrl}`
+            },
+            {
+              "type": "Text",
+              "width": '100vw',
+              "textAlign": "center",
+              "style": "textStylePrimary2",
+              "text": appWelcome,
+              "maxLines": 6
             }
           ]
         }
