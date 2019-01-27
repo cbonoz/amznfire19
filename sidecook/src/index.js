@@ -215,7 +215,7 @@ function renderStep(handlerInput, step, currentRecipe) {
   const speechText = `Step ${step}: ${stepDescription}`
   const stepBody = {
     recipeName: currentRecipe.name,
-    recipeCategory: currentRecipe.recipeCategory || 'Unknown',
+    recipeCategory: currentRecipe.recipeCategory,
     recipeRegion: currentRecipe.region,
     stepNumber: step,
     stepCount: currentRecipe.instructions.length,
