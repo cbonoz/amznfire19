@@ -28,6 +28,7 @@ module.exports = (payload) => {
           "type": "Container",
           "width": "100vw",
           "height": "100vh",
+          "borderWidth": 50,
           "direction": "column",
           "items": [
             {
@@ -44,13 +45,18 @@ module.exports = (payload) => {
               "headerAttributionImage": `${data.logoUrl}`
             },
             {
-              "type": "Text",
-              "width": '100vw',
-              "textAlign": "center",
-              "borderWidth": 10,
-              "style": "textStylePrimary2",
-              "text": appWelcome,
-              "maxLines": 6
+              "type": "Container",
+              "justifyContent": "center",
+              "alignSelf": "center",
+              "width": "90vw",
+              "item": {
+                "type": "Text",
+                "width": "90vw",
+                "textAlign": "center",
+                "style": "textStylePrimary2",
+                "text": appWelcome,
+                "maxLines": 6
+              }
             }
           ]
         }
