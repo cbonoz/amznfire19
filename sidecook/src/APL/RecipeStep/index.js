@@ -9,10 +9,14 @@ module.exports = (payload) => {
         stepHint 
     } = payload
 
+    const stepImage = "https://d2o906d8ln7ui1.cloudfront.net/images/details_01.png"
+    const backgroundImage = "https://d2o906d8ln7ui1.cloudfront.net/images/BT2_Background.png"
+    const logoUrl = "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png"
+
+    const categoryText = recipeRegion || recipeCategory
+
     return {
-        type: 'Alexa.Presentation.APL.RenderDocument',
-        token: 'recipe-step-doc',
-        version: '1.0',
+
         document: {
             "theme": "dark",
             "import": [
@@ -145,7 +149,7 @@ module.exports = (payload) => {
                         "items": [
                             {
                                 "type": "Image",
-                                "source": "${payload.bodyTemplate2Data.image.sources[0].url}",
+                                "source": backgroundImage,
                                 "scale": "best-fill",
                                 "width": "100vw",
                                 "height": "100vh",
@@ -166,26 +170,26 @@ module.exports = (payload) => {
                                         "items": [
                                             {
                                                 "type": "AlexaHeader",
-                                                "headerAttributionImage": "${payload.bodyTemplate2Data.logoUrl}",
-                                                "headerTitle": "${payload.bodyTemplate2Data.title}"
+                                                "headerAttributionImage": logoUrl,
+                                                "headerTitle": recipeName
                                             },
                                             {
                                                 "type": "Text",
-                                                "text": "<b>${payload.bodyTemplate2Data.textContent.title.text}</b>",
+                                                "text": `<b>Step: ${stepNumber} of ${stepCount}</b>`,
                                                 "style": "textStyleBody",
                                                 "width": "70vw",
                                                 "textAlign": "center"
                                             },
                                             {
                                                 "type": "Text",
-                                                "text": "${payload.bodyTemplate2Data.textContent.subtitle.text}",
+                                                "text": `Region: ${categoryText}`,
                                                 "style": "textStylePrimary",
                                                 "width": "70vw",
                                                 "textAlign": "center"
                                             },
                                             {
                                                 "type": "Text",
-                                                "text": "${payload.bodyTemplate2Data.textContent.primaryText.text}",
+                                                "text": stepDescription,
                                                 "paddingTop": 20,
                                                 "style": "textStylePrimary",
                                                 "width": "70vw",
@@ -204,7 +208,7 @@ module.exports = (payload) => {
                         "items": [
                             {
                                 "type": "Image",
-                                "source": "${payload.bodyTemplate2Data.backgroundImage.sources[0].url}",
+                                "source": backgroundImage,
                                 "scale": "best-fill",
                                 "width": "100vw",
                                 "height": "100vh",
@@ -212,8 +216,8 @@ module.exports = (payload) => {
                             },
                             {
                                 "type": "AlexaHeader",
-                                "headerTitle": "${payload.bodyTemplate2Data.title}",
-                                "headerAttributionImage": "${payload.bodyTemplate2Data.logoUrl}"
+                                "headerTitle": recipeName,
+                                "headerAttributionImage": logoUrl,
                             },
                             {
                                 "type": "Container",
@@ -233,25 +237,26 @@ module.exports = (payload) => {
                                             {
                                                 "type": "Container",
                                                 "items": [
+                                                    // {
+                                                    //     "type": "Text",
+                                                    //     "text": `<b>${recipeCategory}</b>`,
+                                                    //     "style": "textStylePrimary",
+                                                    //     "color": "#4dd2ff"
+                                                    // },
                                                     {
                                                         "type": "Text",
-                                                        "text": `<b>${recipeCategory}</b>`,
-                                                        "style": "textStylePrimary",
+                                                        "text": `<b>Step: ${stepNumber} of ${stepCount}</b>`,
+                                                        "style": "textStyleBody",
                                                         "color": "#4dd2ff"
                                                     },
                                                     {
                                                         "type": "Text",
-                                                        "text": "<b>${payload.bodyTemplate2Data.textContent.title.text}</b>",
-                                                        "style": "textStyleBody"
-                                                    },
-                                                    {
-                                                        "type": "Text",
-                                                        "text": "${payload.bodyTemplate2Data.textContent.subtitle.text}",
+                                                        "text": `Region: ${categoryText}`,
                                                         "style": "textStylePrimary"
                                                     },
                                                     {
                                                         "type": "Text",
-                                                        "text": "${payload.bodyTemplate2Data.textContent.primaryText.text}",
+                                                        "text": stepDescription,
                                                         "spacing": "@spacingSmall",
                                                         "paddingTop": "40dp",
                                                         "paddingRight": "70dp",
@@ -263,7 +268,7 @@ module.exports = (payload) => {
                                     },
                                     {
                                         "type": "Image",
-                                        "source": "${payload.bodyTemplate2Data.image.sources[0].url}",
+                                        "source": stepImage,
                                         "width": 340,
                                         "height": 384,
                                         "scale": "best-fit",
@@ -273,73 +278,13 @@ module.exports = (payload) => {
                             },
                             {
                                 "type": "AlexaFooter",
-                                "footerHint": "${payload.bodyTemplate2Data.hintText}"
+                                "footerHint": stepHint
                             }
                         ]
                     }
                 ]
             }
         },
-        "dataSources": {
-            "bodyTemplate2Data": {
-                "type": "object",
-                "objectId": "bt2Sample",
-                "backgroundImage": {
-                    "contentDescription": null,
-                    "smallSourceUrl": null,
-                    "largeSourceUrl": null,
-                    "sources": [
-                        {
-                            "url": "https://d2o906d8ln7ui1.cloudfront.net/images/BT2_Background.png",
-                            "size": "small",
-                            "widthPixels": 0,
-                            "heightPixels": 0
-                        },
-                        {
-                            "url": "https://d2o906d8ln7ui1.cloudfront.net/images/BT2_Background.png",
-                            "size": "large",
-                            "widthPixels": 0,
-                            "heightPixels": 0
-                        }
-                    ]
-                },
-                "title": `Step: ${stepNumber} of ${stepCount}`,
-                "image": {
-                    "contentDescription": null,
-                    "smallSourceUrl": null,
-                    "largeSourceUrl": null,
-                    "sources": [
-                        {
-                            "url": "https://d2o906d8ln7ui1.cloudfront.net/images/details_01.png",
-                            "size": "small",
-                            "widthPixels": 0,
-                            "heightPixels": 0
-                        },
-                        {
-                            "url": "https://d2o906d8ln7ui1.cloudfront.net/images/details_01.png",
-                            "size": "large",
-                            "widthPixels": 0,
-                            "heightPixels": 0
-                        }
-                    ]
-                },
-                "textContent": {
-                    "title": {
-                        "type": "PlainText",
-                        "text": recipeName
-                    },
-                    "subtitle": {
-                        "type": "PlainText",
-                        "text": `Region: ${recipeRegion}`
-                    },
-                    "primaryText": {
-                        "type": "PlainText",
-                        "text": stepDescription
-                    }
-                },
-                "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png",
-                "hintText": stepHint
-            }
-        }
+        "dataSources": {}
     }
 }

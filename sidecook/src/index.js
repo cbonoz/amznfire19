@@ -16,7 +16,10 @@ const helper = require('./helper')
 const APP_NAME = 'Side Cook'
 
 const ERROR_TEXT = `Sorry, I didn't understand the command. Try asking for a recipe, or say "start over".`
-const WELCOME_TEXT = `Welcome to ${APP_NAME}, your personal cooking assistant. Let's find a recipe to make! For example, say 'sandwich recipes'.`
+const WELCOME_TEXT = `Welcome to ${APP_NAME}, your personal cooking assistant. Let's find a recipe to make! For example, say "Find Sandwich recipes".`
+const STEP_TEXT = `Sorry I didn't get your step number quite right. For example, say "step 1", or say "next" or "back" to change steps.`
+const FINISHED_TEXT = `Congratulations, You finished the meal! Ask me to search for another recipe, or say "start over"!`
+const NO_RECIPE_TEXT = `No recipe selected yet! Search for a recipe first. Example, say "Find Cake recipes"`
 
 function supportsAPL(handlerInput) {
   const supportedInterfaces = handlerInput.requestEnvelope.context.System.device.supportedInterfaces;
@@ -34,9 +37,9 @@ const LaunchRequestHandler = {
 
     if (!supportsAPL(handlerInput)) {
       return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .getResponse() 
+        .speak(speechText)
+        .reprompt(speechText)
+        .getResponse()
     }
     const welcomeBody = {
       appName: APP_NAME,
@@ -77,14 +80,14 @@ const IngredientsRequestHandler = {
     const ingredients = currentRecipe.ingredients
     const recipeName = currentRecipe.name
 
-    const ingredientString = ingredients.map(({name, measure}) => `${measure} ${name}`).join(', ')
+    const ingredientString = ingredients.map(({ name, measure }) => `${measure} ${name}`).join(', ')
     const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}. Would you like to hear those again or start the instructions?`
 
     if (!supportsAPL(handlerInput)) {
       return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .getResponse() 
+        .speak(speechText)
+        .reprompt(speechText)
+        .getResponse()
     }
 
     return handlerInput.responseBuilder
@@ -99,8 +102,8 @@ const SearchRequestHandler = {
   canHandle(handlerInput) {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
     const bestRecipes = attributes.bestRecipes
-    return !bestRecipes && 
-      handlerInput.requestEnvelope.request.type === 'IntentRequest' && 
+    return !bestRecipes &&
+      handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
       handlerInput.requestEnvelope.request.intent.name === "SearchIntent"
   },
   async handle(handlerInput) {
@@ -145,7 +148,7 @@ const SearchRequestHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .addDirective(renderSearchDocument({searchTerm, bestRecipes}))
+      .addDirective(renderSearchDocument({ searchTerm, bestRecipes }))
       .getResponse()
   }
 }
@@ -157,7 +160,7 @@ const SelectRecipeHandler = {
     const currentRecipe = attributes.currentRecipe
     return bestRecipes && bestRecipes.length > 0 && !currentRecipe &&
       handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      // && handlerInput.requestEnvelope.request.intent.name === "SelectRecipeIntent"
+    // && handlerInput.requestEnvelope.request.intent.name === "SelectRecipeIntent"
   },
   async handle(handlerInput) {
 
@@ -165,7 +168,7 @@ const SelectRecipeHandler = {
     const bestRecipes = attributes.bestRecipes
 
     if (!bestRecipes) {
-      return CustomErrorHandler.handle(handlerInput, `No recipes found yet! Search for a recipe first. Example: Cake recipes`)
+      return CustomErrorHandler.handle(handlerInput, NO_RECIPE_TEXT)
     }
 
     const slots = handlerInput.requestEnvelope.request.intent.slots
@@ -190,7 +193,6 @@ const SelectRecipeHandler = {
     attributes.ingredientStep = 1
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    
     const repromptText = "Say ingredient list, or say start the recipe. To cancel, say cancel."
     const speechText = `You selected ${currentRecipe.name}. ${repromptText}`
 
@@ -208,24 +210,49 @@ const SelectRecipeHandler = {
   }
 }
 
+function renderStep(handlerInput, step, currentRecipe) {
+  const stepDescription = currentRecipe.instructions[step - 1]
+  const speechText = `Step ${step}: ${stepDescription}`
+  const stepBody = {
+    recipeName: currentRecipe.name,
+    recipeCategory: currentRecipe.recipeCategory || 'Unknown',
+    recipeRegion: currentRecipe.region,
+    stepNumber: step,
+    stepCount: currentRecipe.instructions.length,
+    stepHint: helper.getRandomAlexaTip(),
+    stepDescription
+  }
+
+  return handlerInput.responseBuilder
+    .speak(speechText)
+    .reprompt(speechText)
+    .addDirective({
+      type: 'Alexa.Presentation.APL.RenderDocument',
+      token: 'recipe-step-doc',
+      version: '1.0',
+      ...renderStepDocument(stepBody)
+    })
+    .getResponse()
+}
+
 const SelectStepHandler = {
   canHandle(handlerInput) {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
     const currentRecipe = attributes.currentRecipe
     return currentRecipe && handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && (handlerInput.requestEnvelope.request.intent.name === "SelectStepNumberIntent"
-      || handlerInput.requestEnvelope.request.intent.name === "InstructionIntent")
+        || handlerInput.requestEnvelope.request.intent.name === "InstructionIntent")
   },
   async handle(handlerInput) {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
     const currentRecipe = attributes.currentRecipe
 
     if (!currentRecipe) {
-      return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
+      return CustomErrorHandler.handle(handlerInput, NO_RECIPE_TEXT)
     }
 
-    let step = 1 
-    
+    let step = 1
+
     if (handlerInput.requestEnvelope.request.intent.name === "InstructionIntent") {
       step = attributes.instructionStep
     } else {
@@ -234,20 +261,19 @@ const SelectStepHandler = {
         || slots && slots.StepNumberOrdinal && slots.StepNumberOrdinal.value
     }
     // convert step to number.
-    step = +step
+    step = parseInt(step)
 
-    if (step >= currentRecipe.instructions.length) {
-      return CustomErrorHandler.handle(handlerInput, `Congratulations, You finished the meal! Ask me to search for another recipe!`)
+    if (step > currentRecipe.instructions.length) {
+      // TODO: replace with custom handler with finished APL document.
+      return CustomErrorHandler.handle(handlerInput, FINISHED_TEXT) 
     }
 
-    if (step < 0) {
-      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't get your step number quite right. For example, say step 0.`)
+    if (step <= 0 || isNaN(step)) {
+      return CustomErrorHandler.handle(handlerInput, STEP_TEXT)
     }
-    const stepDescription = currentRecipe.instructions[step - 1]
-    const speechText = `Step ${step}: ${stepDescription}`
+
     attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
-
 
     if (!supportsAPL(handlerInput)) {
       return handlerInput.responseBuilder
@@ -256,20 +282,7 @@ const SelectStepHandler = {
         .getResponse()
     }
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      .addDirective(renderStepDocument({
-          recipeName: currentRecipe.name,
-          recipeCategory: currentRecipe.recipeCategory,
-          recipeRegion: currentRecipe.region,
-          stepNumber: step,
-          stepCount: currentRecipe.instructions.length,
-          stepHint: helper.getRandomAlexaTip(),
-          stepDescription
-        }))
-      .getResponse()
-
+    return renderStep(handlerInput, step, currentRecipe)
   }
 }
 
@@ -279,7 +292,7 @@ const NextStepHandler = {
     const currentRecipe = attributes.currentRecipe
     return currentRecipe && handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && (handlerInput.requestEnvelope.request.intent.name === "AMAZON.NextIntent" ||
-      handlerInput.requestEnvelope.request.intent.name === "AMAZON.MoreIntent")
+        handlerInput.requestEnvelope.request.intent.name === "AMAZON.MoreIntent")
 
   },
   async handle(handlerInput) {
@@ -288,29 +301,29 @@ const NextStepHandler = {
     const currentRecipe = attributes.currentRecipe
 
     if (!currentRecipe) {
-      return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
+      return CustomErrorHandler.handle(handlerInput, NO_RECIPE_TEXT)
     }
 
-    const step = attributes.instructionStep + 1
-    if (step >= currentRecipe.instructions.length) {
-      return CustomErrorHandler.handle(handlerInput, `Congratulations, You finished the meal! Ask me to search for another recipe!`)
+    const step = parseInt(attributes.instructionStep) + 1
+    if (isNaN(step)) {
+      return CustomErrorHandler.handle(handlerInput, STEP_TEXT)
     }
 
-    const speechText = `Step ${step}: ${currentRecipe.instructions[step - 1]}`
+    if (step > currentRecipe.instructions.length) {
+      return CustomErrorHandler.handle(handlerInput, FINISHED_TEXT)
+    }
+
     attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      // .addDirective({
-      //   type: 'Alexa.Presentation.APL.RenderDocument',
-      //   token: 'pagerToken',
-      //   version: '1.0',
-      //   document: recipeStepsDocument,
-      //   datasources: { currentRecipe, instructionStep }
-      // })
-      .getResponse()
+    if (!supportsAPL(handlerInput)) {
+      return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .getResponse()
+    }
+
+    return renderStep(handlerInput, step, currentRecipe)
   }
 }
 
@@ -327,32 +340,30 @@ const PrevStepHandler = {
     const currentRecipe = attributes.currentRecipe
 
     if (!currentRecipe) {
-      return CustomErrorHandler.handle(handlerInput, `No recipe selected yet! Search for a recipe first. Example: Cake recipes`)
+      return CustomErrorHandler.handle(handlerInput, NO_RECIPE_TEXT)
+    }
+    const step = parseInt(attributes.instructionStep) - 1
+    if (isNaN(step)) {
+      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't get your step number quite right. For example, say step 1.`)
     }
 
-    let step = attributes.instructionStep - 1
     if (step < 0) {
       step = 0
     }
 
-    const speechText = `Step ${step + 1}: ${currentRecipe.instructions[step]}`
     attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .reprompt(speechText)
-      // .addDirective({
-      //   type: 'Alexa.Presentation.APL.RenderDocument',
-      //   token: 'pagerToken',
-      //   version: '1.0',
-      //   document: recipeStepsDocument,
-      //   datasources: { currentRecipe, instructionStep }
-      // })
-      .getResponse()
+    if (!supportsAPL(handlerInput)) {
+      return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .getResponse()
+    }
+
+    return renderStep(handlerInput, step, currentRecipe)
   }
 }
-
 
 const StartOverHandler = {
   canHandle(handlerInput) {
