@@ -121,7 +121,7 @@ module.exports = (payload) => {
                                 },
                                 {
                                     "type": "Text",
-                                    "text": "<b>${data.ordinalNumber}.</b>${data.textContent.primaryText.text}",
+                                    "text": "<b>${data.ordinalNumber}. </b>${data.textContent.primaryText.text}",
                                     "style": "textStyleSecondary",
                                     "maxLines": 1,
                                     "spacing": 12
