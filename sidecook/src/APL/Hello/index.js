@@ -5,7 +5,8 @@ module.exports = (payload) => {
     backgroundSmall: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
     backgroundLarge: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
     "title": "Welcome to SideCook!",
-    "logoUrl": "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png"
+    "logoUrl": "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png",
+    WELCOME_TEXT: `<b>Welcome to SideCook>/b>, your personal cooking assistant. Let's find a recipe to make! For example, say 'sandwich recipes'.`
   }
 
 
@@ -41,7 +42,14 @@ module.exports = (payload) => {
                 "type": "AlexaHeader",
                 "headerTitle": `${data.title}`,
                 "headerAttributionImage": `${data.logoUrl}`
-            }
+            }, {
+              "type": "Text",
+              "width": '100vh',
+              "textAlign": "center",
+              "style": "textStylePrimary2",
+              "text": data.WELCOME_TEXT,
+              "maxLines": 6
+          }
           ]
         }
       ]
