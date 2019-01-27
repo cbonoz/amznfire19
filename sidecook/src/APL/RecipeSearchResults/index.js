@@ -2,6 +2,12 @@ module.exports = (payload) => {
 
     const { bestRecipes, searchTerm } = payload
 
+    const data = {
+        backgroundSmall: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
+        backgroundLarge: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
+        "logoUrl": "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png",
+        
+      }
     const recipeResultList = bestRecipes.map((recipe, i) => {
         return {
             "listItemIdentifier": recipe.name,
@@ -249,7 +255,7 @@ module.exports = (payload) => {
                                 },
                                 {
                                     "type": "Text",
-                                    "text": "<b>${ordinal}.</b> ${data.textContent.primaryText.text}",
+                                    "text": "<b>${data.ordinal}.</b> ${data.textContent.primaryText.text}",
                                     "style": "textStyleSecondary",
                                     "maxLines": 1,
                                     "spacing": 12
@@ -318,7 +324,7 @@ module.exports = (payload) => {
                                     "scrollDirection": "horizontal",
                                     "paddingLeft": "@marginLeft",
                                     "paddingRight": "@marginRight",
-                                    "data": "${listData}",
+                                    "data": recipeResultList,
                                     "height": "70vh",
                                     "width": "100%",
                                     "numbered": true,
@@ -330,7 +336,7 @@ module.exports = (payload) => {
                                 },
                                 {
                                     "type": "AlexaFooter",
-                                    "footerHint": "${payload.listTemplate2ListData.hintText}"
+                                    "footerHint": "${hintText}"
                                 }
                             ]
                         }
@@ -348,7 +354,7 @@ module.exports = (payload) => {
                         "title": "${payload.listTemplate2Metadata.title}",
                         "hintText": "${payload.listTemplate2Metadata.hintText}",
                         "logo": "${payload.listTemplate2Metadata.logoUrl}",
-                        "listData": "${payload.listTemplate2ListData.listPage.listItems}"
+                        "listData": "${payload.listTemplate2ListData.listItems}"
                     }
                 ]
             }
@@ -377,16 +383,14 @@ module.exports = (payload) => {
                     ]
                 },
                 "title": `Results for ${searchTerm}`,
-                "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png"
+                "logoUrl": data.logoUrl
             },
             "listTemplate2ListData": {
                 "type": "list",
                 "listId": "lt2Sample",
                 "totalNumberOfItems": bestRecipes.length,
                 "hintText": `Try, "Alexa, select ${bestRecipes[0].name}"`,
-                "listPage": {
-                    "listItems": recipeResultList
-                }
+                "listItems": recipeResultList
             }
         }
     }
