@@ -268,7 +268,7 @@ const SelectStepHandler = {
       return CustomErrorHandler.handle(handlerInput, FINISHED_TEXT) 
     }
 
-    if (step <= 0 || isNaN(step)) {
+    if (step < 1 || isNaN(step)) {
       return CustomErrorHandler.handle(handlerInput, STEP_TEXT)
     }
 
@@ -332,7 +332,7 @@ const PrevStepHandler = {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
     const currentRecipe = attributes.currentRecipe
     return currentRecipe && handlerInput.requestEnvelope.request.type === 'IntentRequest'
-      && handlerInput.requestEnvelope.request.intent.name === "AMAZON.PrevIntent"
+      && (handlerInput.requestEnvelope.request.intent.name === "AMAZON.PreviousIntent" || handlerInput.requestEnvelope.request.intent.name === "AMAZON.PrevIntent")
   },
   async handle(handlerInput) {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
@@ -347,8 +347,8 @@ const PrevStepHandler = {
       return CustomErrorHandler.handle(handlerInput, `Sorry I didn't get your step number quite right. For example, say step 1.`)
     }
 
-    if (step < 0) {
-      step = 0
+    if (step < 1) {
+      step = 1
     }
 
     attributes.instructionStep = step
