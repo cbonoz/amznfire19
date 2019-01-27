@@ -403,7 +403,7 @@ const CustomErrorHandler = {
 
 const skillBuilder = Alexa.SkillBuilders.custom()
 
-exports.handler = skillBuilder
+const baseSkill = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
     SearchRequestHandler,
@@ -415,4 +415,6 @@ exports.handler = skillBuilder
     IngredientsRequestHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
-  .lambda() // create()
+
+exports.handler = baseSkill.lambda()
+exports.tester = baseSkill.create()
