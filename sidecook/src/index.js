@@ -40,7 +40,7 @@ const LaunchRequestHandler = {
     }
     const welcomeBody = {
       appName: APP_NAME,
-      appMessage: WELCOME_TEXT,
+      appWelcome: WELCOME_TEXT,
       appTip: "" // helper.getRandomAlexaTip()
     }
     // const welcomeDirective = renderWelcomeDocument()

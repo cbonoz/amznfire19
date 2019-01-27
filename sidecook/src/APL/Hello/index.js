@@ -6,6 +6,7 @@ module.exports = (payload) => {
     backgroundLarge: "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
     "title": `Welcome to ${appName}!`,
     "logoUrl": "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png",
+    
   }
 
 
