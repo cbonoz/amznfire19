@@ -1,6 +1,5 @@
-module.exports = (payload) => {
-    const { appName, appTip } = payload
-    return {
+module.exports = () => {
+    return { 
         "document": {
             "type": "APL",
             "version": "1.0",
@@ -212,11 +211,11 @@ module.exports = (payload) => {
                 "textContent": {
                     "primaryText": {
                         "type": "PlainText",
-                        "text": `Welcome to ${appName}`
+                        "text": "Welcome to The Daily Cheese"
                     }
                 },
                 "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png",
-                "hintText": appTip
+                "hintText": "Try, \"Alexa, what is today's cheesy joke?\""
             }
         }
     }

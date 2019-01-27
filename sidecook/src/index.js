@@ -51,7 +51,7 @@ const LaunchRequestHandler = {
         "type": 'Alexa.Presentation.APL.RenderDocument',
         "version": '1.0',
         "token": "welcome-doc",
-        "document": renderHelloDocument(welcomeBody)
+        ...renderWelcomeDocument()
       })
       .getResponse()
   }
