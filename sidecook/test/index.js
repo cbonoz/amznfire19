@@ -12,7 +12,7 @@ if (!input) {
   process.exit()
 }
 
-entry.handler.invoke(input)
+entry.tester.invoke(input)
   .then(response => {
     console.log(util.inspect(response, {showHidden: false, depth: null}))
   })

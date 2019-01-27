@@ -11,11 +11,11 @@ helper.fetchRecipes(query)
     console.log(data)
   })
 
-// test apl transform
-// api.searchRecipes(query)
-//   .then(response => ({ data: response.data.meals[0], source: response.source }))
-//   .then(transform)
-//   .then(data => buildIngredients(data.ingredients))
-//   .then(data => {
-//     console.log(data)
-//   })
+test apl transform
+api.searchRecipes(query)
+  .then(response => ({ data: response.data.meals[0], source: response.source }))
+  .then(transform)
+  .then(data => buildIngredients(data.ingredients))
+  .then(data => {
+    console.log(data)
+  })
