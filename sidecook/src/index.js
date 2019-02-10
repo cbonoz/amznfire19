@@ -21,7 +21,7 @@ const STEP_TEXT = `Sorry I didn't get your step number quite right. For example,
 const FINISHED_TEXT = `Congratulations, You finished the meal! Ask me to search for another recipe, or say "start over"!`
 const NO_RECIPE_TEXT = `No recipe selected yet! Search for a recipe first. Example, say "Find Cake recipes"`
 const STOP_TEXT = `Let's cook again soon! Goodbye.`
-const HELP_TEXT_DEFAULT = `Help: I am ${APP_NAME}, your personal cooking assistant. Let's find a recipe to make! For example, say "Find Sandwich recipes".`
+const HELP_TEXT_DEFAULT = `I can help you discover great recipes and walk through them step by step. Let's find a recipe to make! For example, say "Find Sandwich recipes".`
 
 function supportsAPL(handlerInput) {
   const supportedInterfaces = handlerInput.requestEnvelope.context.System.device.supportedInterfaces
@@ -218,7 +218,7 @@ const SelectRecipeHandler = {
 
 function renderStep(handlerInput, step, currentRecipe) {
   const stepDescription = currentRecipe.instructions[step - 1]
-  const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue.`
+  const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue or say 'repeat'.`
   const stepBody = {
     recipeName: currentRecipe.name,
     recipeCategory: currentRecipe.recipeCategory,
@@ -270,7 +270,6 @@ const SelectStepHandler = {
     step = parseInt(step)
 
     if (step > currentRecipe.instructions.length) {
-      // TODO: replace with custom handler with finished APL document.
       return CustomErrorHandler.handle(handlerInput, FINISHED_TEXT) 
     }
 
@@ -282,6 +281,8 @@ const SelectStepHandler = {
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     if (!supportsAPL(handlerInput)) {
+      const stepDescription = currentRecipe.instructions[step - 1]
+      const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue.`
       return handlerInput.responseBuilder
         .speak(speechText)
         .reprompt(speechText)
@@ -323,6 +324,8 @@ const NextStepHandler = {
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     if (!supportsAPL(handlerInput)) {
+      const stepDescription = currentRecipe.instructions[step - 1]
+      const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue.`
       return handlerInput.responseBuilder
         .speak(speechText)
         .reprompt(speechText)
@@ -371,6 +374,37 @@ const PrevStepHandler = {
   }
 }
 
+const RepeatHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+      && handlerInput.requestEnvelope.request.intent.name === "AMAZON.RepeatIntent"
+  },
+  handle(handlerInput) {
+    const attributes = handlerInput.attributesManager.getSessionAttributes()
+    const currentRecipe = attributes.currentRecipe
+
+    if (!currentRecipe) {
+      return CustomErrorHandler.handle(handlerInput, NO_RECIPE_TEXT)
+    }
+
+    const step = parseInt(attributes.instructionStep)
+    if (isNaN(step)) {
+      return CustomErrorHandler.handle(handlerInput, STEP_TEXT)
+    }
+
+    if (!supportsAPL(handlerInput)) {
+      const stepDescription = currentRecipe.instructions[step - 1]
+      const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue.`
+      return handlerInput.responseBuilder
+        .speak(speechText)
+        .reprompt(speechText)
+        .getResponse()
+    }
+
+    return renderStep(handlerInput, step, currentRecipe)
+  },
+}
+
 const StartOverHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -392,8 +426,7 @@ const ExitHandler = {
                 || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent')
   },
   handle(handlerInput) {
-    const requestAttributes = handlerInput.attributesManager.getRequestAttributes()
-
+    // Exit.
     return handlerInput.responseBuilder
       .speak(STOP_TEXT)
       .getResponse()
@@ -406,11 +439,11 @@ const HelpHandler = {
             && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent'
   },
   handle(handlerInput) {
-    const attributes = handlerInput.attributesManager.getRequestAttributes()
+    const attributes = handlerInput.attributesManager.getSessionAttributes()
     const currentRecipe = attributes.currentRecipe
     let speechText
     if (currentRecipe) {
-      speechText = `You currently in the recipe for ${currentRecipe.name}. Try saying ingredient list, or a step number to resume cooking like step 2. Or say start over. `
+      speechText = `You currently in the recipe for ${currentRecipe.name}. Try saying ingredient list, or resume cooking by saying a step, for example: 'step 2'. Or say start over. `
     } else {
       speechText = HELP_TEXT_DEFAULT
     }
@@ -466,6 +499,7 @@ const baseSkill = skillBuilder
     SelectRecipeHandler,
     PrevStepHandler,
     NextStepHandler,
+    RepeatHandler,
     HelpHandler,
     ExitHandler,
     IngredientsRequestHandler,

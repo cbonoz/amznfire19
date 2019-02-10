@@ -129,6 +129,7 @@ function getRandomAlexaTip() {
   return random(ALEXA_TIPS)
 }
 module.exports = {
+  random,
   formatIngredientsData,
   fetchRecipes,
   getRandomAlexaTip,

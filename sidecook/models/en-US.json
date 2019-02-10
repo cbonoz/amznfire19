@@ -120,6 +120,10 @@
                     "samples": []
                 },
                 {
+                    "name": "AMAZON.RepeatIntent",
+                    "samples": []
+                },
+                {
                     "name": "AMAZON.ScrollRightIntent",
                     "samples": []
                 },
