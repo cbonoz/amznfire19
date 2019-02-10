@@ -51,8 +51,9 @@ Put SideCook's model and UI under more strenuous user testing to figure out the 
 </pre>
 
 ### Testing
+From the `/text` folder, run the intent input json test files.
 <pre>
-  node test/index.js "filename"
+  node index.js "filename"
 </pre>
 where filename is the json file input to execute on. The output will be the rendered response from the function.
 
