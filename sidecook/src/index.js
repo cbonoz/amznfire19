@@ -20,11 +20,13 @@ const WELCOME_TEXT = `Welcome to ${APP_NAME}, your personal cooking assistant. L
 const STEP_TEXT = `Sorry I didn't get your step number quite right. For example, say "step 1", or say "next" or "back" to change steps.`
 const FINISHED_TEXT = `Congratulations, You finished the meal! Ask me to search for another recipe, or say "start over"!`
 const NO_RECIPE_TEXT = `No recipe selected yet! Search for a recipe first. Example, say "Find Cake recipes"`
+const STOP_TEXT = `Let's cook again soon! Goodbye.`
+const HELP_TEXT_DEFAULT = `Help: I am ${APP_NAME}, your personal cooking assistant. Let's find a recipe to make! For example, say "Find Sandwich recipes".`
 
 function supportsAPL(handlerInput) {
-  const supportedInterfaces = handlerInput.requestEnvelope.context.System.device.supportedInterfaces;
-  const aplInterface = supportedInterfaces['Alexa.Presentation.APL'];
-  return aplInterface != null && aplInterface != undefined;
+  const supportedInterfaces = handlerInput.requestEnvelope.context.System.device.supportedInterfaces
+  const aplInterface = supportedInterfaces['Alexa.Presentation.APL']
+  return aplInterface != null && aplInterface != undefined
 }
 
 const LaunchRequestHandler = {
@@ -114,7 +116,7 @@ const SearchRequestHandler = {
 
     if (!searchTerm) {
       // We couldn't understand or find the search term in the query.
-      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't understand your selection. Try searching again!`);
+      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't understand your selection. Try searching again!`)
     }
 
     const recipes = await helper.fetchRecipes(searchTerm)
@@ -134,10 +136,10 @@ const SearchRequestHandler = {
     if (bestRecipes.length > 1) {
       speechText = `Here are the best recipes we found for ${searchTerm}: ${bestRecipeString}`
     } else if (bestRecipes.length === 1) {
-      speechText = `Here's the best recipe we found for ${searchTerm}: ${bestRecipeString}. Say select ${bestRecipeString} to begin.`
+      speechText = `Here's the best recipe we found for ${searchTerm}: ${bestRecipeString}. Say 'start cooking' to begin, or say 'start over' to find another recipe. `
       attributes.currentRecipe = bestRecipes[0]
     } else { // 0 results
-      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't find any recipes for ${searchTerm}. Try searching again!`);
+      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't find any recipes for ${searchTerm}. Try searching again!`)
     }
 
     handlerInput.attributesManager.setSessionAttributes(attributes)
@@ -216,7 +218,7 @@ const SelectRecipeHandler = {
 
 function renderStep(handlerInput, step, currentRecipe) {
   const stepDescription = currentRecipe.instructions[step - 1]
-  const speechText = `Step ${step}: ${stepDescription}`
+  const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue.`
   const stepBody = {
     recipeName: currentRecipe.name,
     recipeCategory: currentRecipe.recipeCategory,
@@ -383,6 +385,43 @@ const StartOverHandler = {
   },
 }
 
+const ExitHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent'
+                || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent')
+  },
+  handle(handlerInput) {
+    const requestAttributes = handlerInput.attributesManager.getRequestAttributes()
+
+    return handlerInput.responseBuilder
+      .speak(STOP_TEXT)
+      .getResponse()
+  },
+}
+
+const HelpHandler = {
+  canHandle(handlerInput) {
+    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+            && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent'
+  },
+  handle(handlerInput) {
+    const attributes = handlerInput.attributesManager.getRequestAttributes()
+    const currentRecipe = attributes.currentRecipe
+    let speechText
+    if (currentRecipe) {
+      speechText = `You currently in the recipe for ${currentRecipe.name}. Try saying ingredient list, or a step number to resume cooking like step 2. Or say start over. `
+    } else {
+      speechText = HELP_TEXT_DEFAULT
+    }
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .getResponse()
+  },
+}
+
 const ErrorHandler = {
   canHandle() {
     return true
@@ -393,7 +432,7 @@ const ErrorHandler = {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
     const currentRecipe = attributes.currentRecipe
     if (currentRecipe) {
-      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't get that. Try saying ingredient list, or a step number to resume making ${currentRecipe.name}. Or say start over`)
+      return CustomErrorHandler.handle(handlerInput, `Sorry I didn't get that. Try saying ingredient list, or a step number to resume making ${currentRecipe.name}. Or say start over. `)
     }
 
     // Generic error
@@ -427,8 +466,10 @@ const baseSkill = skillBuilder
     SelectRecipeHandler,
     PrevStepHandler,
     NextStepHandler,
-    StartOverHandler,
-    IngredientsRequestHandler
+    HelpHandler,
+    ExitHandler,
+    IngredientsRequestHandler,
+    StartOverHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
 
