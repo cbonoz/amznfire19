@@ -1,0 +1,647 @@
+{
+	"version": "1.0",
+	"session": {
+		"new": false,
+		"sessionId": "amzn1.echo-api.session.ba5f91ce-708d-49ff-92a8-30d20590b7bc",
+		"application": {
+			"applicationId": "amzn1.ask.skill.f960213d-3009-4982-bb8b-2c47ad1f1288"
+		},
+		"attributes": {
+			"bestRecipes": [
+				{
+					"name": "Chicken Handi",
+					"category": "Chicken",
+					"region": "Indian",
+					"thumb": "https://www.themealdb.com/images/media/meals/wyxwsp1486979827.jpg",
+					"video": "https://www.youtube.com/watch?v=IO0issT0Rmc",
+					"ingredients": [
+						{
+							"name": "Chicken",
+							"measure": "1.2 kg"
+						},
+						{
+							"name": "Onion",
+							"measure": "5 thinly sliced"
+						},
+						{
+							"name": "Tomatoes",
+							"measure": "2 finely chopped"
+						},
+						{
+							"name": "Garlic",
+							"measure": "8 cloves chopped"
+						},
+						{
+							"name": "Ginger paste",
+							"measure": "1 tbsp"
+						},
+						{
+							"name": "Vegetable oil",
+							"measure": "¼ cup"
+						},
+						{
+							"name": "Cumin seeds",
+							"measure": "2 tsp"
+						},
+						{
+							"name": "Coriander seeds",
+							"measure": "3 tsp"
+						},
+						{
+							"name": "Turmeric powder",
+							"measure": "1 tsp"
+						},
+						{
+							"name": "Chilli powder",
+							"measure": "1 tsp"
+						},
+						{
+							"name": "Green chilli",
+							"measure": "2"
+						},
+						{
+							"name": "Yogurt",
+							"measure": "1 cup"
+						},
+						{
+							"name": "Cream",
+							"measure": "¾ cup"
+						},
+						{
+							"name": "fenugreek",
+							"measure": "3 tsp Dried"
+						},
+						{
+							"name": "Garam masala",
+							"measure": "1 tsp"
+						},
+						{
+							"name": "Salt",
+							"measure": "To taste"
+						}
+					],
+					"instructions": [
+						"Take a large pot or wok, big enough to cook all the chicken, and heat the oil in it. Once the oil is hot, add sliced onion and fry them until deep golden brown. Then take them out on a plate and set aside.",
+						"To the same pot, add the chopped garlic and sauté for a minute. Then add the chopped tomatoes and cook until tomatoes turn soft. This would take about 5 minutes.",
+						"Then return the fried onion to the pot and stir. Add ginger paste and sauté well.",
+						"Now add the cumin seeds, half of the coriander seeds and chopped green chillies. Give them a quick stir.",
+						"Next goes in the spices – turmeric powder and red chilli powder. Sauté the spices well for couple of minutes.",
+						"Add the chicken pieces to the wok, season it with salt to taste and cook the chicken covered on medium-low heat until the chicken is almost cooked through. This would take about 15 minutes. Slowly sautéing the chicken will enhance the flavor, so do not expedite this step by putting it on high heat.",
+						"When the oil separates from the spices, add the beaten yogurt keeping the heat on lowest so that the yogurt doesn’t split. Sprinkle the remaining coriander seeds and add half of the dried fenugreek leaves. Mix well.",
+						"Finally add the cream and give a final mix to combine everything well.",
+						"Sprinkle the remaining kasuri methi and garam masala and serve the chicken handi hot with naan or rotis. Enjoy!"
+					],
+					"complexInstructions": [
+						"Take a large pot or wok, big enough to cook all the chicken, and heat the oil in it",
+						"Once the oil is hot, add sliced onion and fry them until deep golden brown",
+						"Then take them out on a plate and set aside",
+						"To the same pot, add the chopped garlic and sauté for a minute",
+						"Then add the chopped tomatoes and cook until tomatoes turn soft",
+						"This would take about 5 minutes",
+						"Then return the fried onion to the pot and stir",
+						"Add ginger paste and sauté well",
+						"Now add the cumin seeds, half of the coriander seeds and chopped green chillies",
+						"Give them a quick stir",
+						"Next goes in the spices – turmeric powder and red chilli powder",
+						"Sauté the spices well for couple of minutes",
+						"Add the chicken pieces to the wok, season it with salt to taste and cook the chicken covered on medium-low heat until the chicken is almost cooked through",
+						"This would take about 15 minutes",
+						"Slowly sautéing the chicken will enhance the flavor, so do not expedite this step by putting it on high heat",
+						"When the oil separates from the spices, add the beaten yogurt keeping the heat on lowest so that the yogurt doesn’t split",
+						"Sprinkle the remaining coriander seeds and add half of the dried fenugreek leaves",
+						"Mix well",
+						"Finally add the cream and give a final mix to combine everything well",
+						"Sprinkle the remaining kasuri methi and garam masala and serve the chicken handi hot with naan or rotis",
+						"Enjoy!"
+					]
+				},
+				{
+					"name": "Chicken Congee",
+					"category": "Chicken",
+					"region": "Chinese",
+					"thumb": "https://www.themealdb.com/images/media/meals/1529446352.jpg",
+					"video": "https://www.youtube.com/watch?v=kqEfk801E94",
+					"ingredients": [
+						{
+							"name": "Chicken",
+							"measure": "8 oz "
+						},
+						{
+							"name": "Salt",
+							"measure": "pinch"
+						},
+						{
+							"name": "Pepper",
+							"measure": "pinch"
+						},
+						{
+							"name": "Ginger Cordial",
+							"measure": "1 tsp "
+						},
+						{
+							"name": "Ginger",
+							"measure": "1 tsp "
+						},
+						{
+							"name": "Spring Onions",
+							"measure": "1 tbs"
+						},
+						{
+							"name": "Rice",
+							"measure": "1/2 cup "
+						},
+						{
+							"name": "Water",
+							"measure": "8 cups "
+						},
+						{
+							"name": "Coriander",
+							"measure": "2 oz "
+						}
+					],
+					"instructions": [
+						"STEP 1 - MARINATING THE CHICKEN",
+						"In a bowl, add chicken, salt, white pepper, ginger juice and then mix it together well.",
+						"Set the chicken aside.",
+						"STEP 2 - RINSE THE WHITE RICE",
+						"Rinse the rice in a metal bowl or pot a couple times and then drain the water.",
+						"STEP 2 - BOILING THE WHITE RICE",
+						"Next add 8 cups of water and then set the stove on high heat until it is boiling. Once rice porridge starts to boil, set the stove on low heat and then stir it once every 8-10 minutes for around 20-25 minutes.",
+						"After 25 minutes, this is optional but you can add a little bit more water to make rice porridge to make it less thick or to your preference.",
+						"Next add the marinated chicken to the rice porridge and leave the stove on low heat for another 10 minutes.",
+						"After an additional 10 minutes add the green onions, sliced ginger, 1 pinch of salt, 1 pinch of white pepper and stir for 10 seconds.",
+						"Serve the rice porridge in a bowl",
+						"Optional: add Coriander on top of the rice porridge."
+					],
+					"complexInstructions": [
+						"STEP 1 - MARINATING THE CHICKEN\r\nIn a bowl, add chicken, salt, white pepper, ginger juice and then mix it together well",
+						"Set the chicken aside",
+						"STEP 2 - RINSE THE WHITE RICE\r\nRinse the rice in a metal bowl or pot a couple times and then drain the water",
+						"STEP 2 - BOILING THE WHITE RICE\r\nNext add 8 cups of water and then set the stove on high heat until it is boiling",
+						"Once rice porridge starts to boil, set the stove on low heat and then stir it once every 8-10 minutes for around 20-25 minutes",
+						"After 25 minutes, this is optional but you can add a little bit more water to make rice porridge to make it less thick or to your preference",
+						"Next add the marinated chicken to the rice porridge and leave the stove on low heat for another 10 minutes",
+						"After an additional 10 minutes add the green onions, sliced ginger, 1 pinch of salt, 1 pinch of white pepper and stir for 10 seconds",
+						"Serve the rice porridge in a bowl\r\nOptional: add Coriander on top of the rice porridge",
+						""
+					]
+				},
+				{
+					"name": "Chicken Karaage",
+					"category": "Chicken",
+					"region": "Japanese",
+					"thumb": "https://www.themealdb.com/images/media/meals/tyywsw1505930373.jpg",
+					"video": "https://www.youtube.com/watch?v=XivddFddthc",
+					"ingredients": [
+						{
+							"name": "Chicken thigh",
+							"measure": "450 grams Boneless skin"
+						},
+						{
+							"name": "Ginger",
+							"measure": "1 tablespoon"
+						},
+						{
+							"name": "Garlic",
+							"measure": "1 clove"
+						},
+						{
+							"name": "Soy sauce",
+							"measure": "2 tablespoons"
+						},
+						{
+							"name": "Sake",
+							"measure": "1 tablespoon"
+						},
+						{
+							"name": "Granulated sugar",
+							"measure": "2 teaspoon"
+						},
+						{
+							"name": "Potato starch",
+							"measure": "1/3 cup"
+						},
+						{
+							"name": "Vegetable oil",
+							"measure": "1/3 cup"
+						},
+						{
+							"name": "Lemon",
+							"measure": "1/3 cup"
+						}
+					],
+					"instructions": [
+						"Add the ginger, garlic, soy sauce, sake and sugar to a bowl and whisk to combine. Add the chicken, then stir to coat evenly. Cover and refrigerate for at least 1 hour.",
+						"Add 1 inch of vegetable oil to a heavy bottomed pot and heat until the oil reaches 360 degrees F. Line a wire rack with 2 sheets of paper towels and get your tongs out. Put the potato starch in a bowl",
+						"Add a handful of chicken to the potato starch and toss to coat each piece evenly.",
+						"Fry the karaage in batches until the exterior is a medium brown and the chicken is cooked through. Transfer the fried chicken to the paper towel lined rack. If you want the karaage to stay crispy longer, you can fry the chicken a second time, until it's a darker color after it's cooled off once. Serve with lemon wedges."
+					],
+					"complexInstructions": [
+						"Add the ginger, garlic, soy sauce, sake and sugar to a bowl and whisk to combine",
+						"Add the chicken, then stir to coat evenly",
+						"Cover and refrigerate for at least 1 hour",
+						"Add 1 inch of vegetable oil to a heavy bottomed pot and heat until the oil reaches 360 degrees F",
+						"Line a wire rack with 2 sheets of paper towels and get your tongs out",
+						"Put the potato starch in a bowl\r\n\r\nAdd a handful of chicken to the potato starch and toss to coat each piece evenly",
+						"Fry the karaage in batches until the exterior is a medium brown and the chicken is cooked through",
+						"Transfer the fried chicken to the paper towel lined rack",
+						"If you want the karaage to stay crispy longer, you can fry the chicken a second time, until it's a darker color after it's cooled off once",
+						"Serve with lemon wedges",
+						""
+					]
+				}
+			]
+		},
+		"user": {
+			"userId": "amzn1.ask.account.AFUYATXQTMLIOU2CJXXTASERTA3MAQ2GQ2TMADMLAMHXLN5ZYMOTWLJI6RLC5XUVGODZSM7K2AUKTHWZPDYNB4NHCQFPNZ32HCPH4SLYAHANAFGQ53Y4MHCBSEGPY34KZN5NLMDE2EQN7TBGZRENWMETBXZN6PZW6NVFJ55SEXSS4Z7WJB2AV3EAKRRBIWICDDUJCTRDEJ3S2DQ"
+		}
+	},
+	"context": {
+		"Alexa.Presentation.APL": {
+			"token": "recipe-search-doc",
+			"version": "ARCRenderer-1.0",
+			"componentsVisibleOnScreen": [
+				{
+					"id": "viewport",
+					"position": "1024x600+0+0:0",
+					"type": "mixed",
+					"tags": {
+						"viewport": {}
+					},
+					"visibility": 1,
+					"children": [
+						{
+							"id": ":17",
+							"position": "1024x600+0+0:1",
+							"type": "mixed",
+							"tags": {
+								"focused": false,
+								"spoken": false,
+								"disabled": false
+							},
+							"visibility": 1,
+							"children": [
+								{
+									"id": ":18",
+									"position": "1024x600+0+0:2",
+									"type": "graphic",
+									"tags": {
+										"focused": false,
+										"spoken": false,
+										"disabled": false
+									},
+									"visibility": 1,
+									"entities": []
+								},
+								{
+									"id": ":20",
+									"position": "1024x94+0+0:2",
+									"type": "mixed",
+									"tags": {
+										"focused": false,
+										"spoken": false,
+										"disabled": false
+									},
+									"visibility": 1,
+									"children": [
+										{
+											"id": ":21",
+											"position": "1024x94+0+0:3",
+											"type": "mixed",
+											"tags": {
+												"focused": false,
+												"spoken": false,
+												"disabled": false
+											},
+											"visibility": 1,
+											"children": [
+												{
+													"id": ":22",
+													"position": "1024x94+0+0:4",
+													"type": "mixed",
+													"tags": {
+														"focused": false,
+														"spoken": false,
+														"disabled": false
+													},
+													"visibility": 1,
+													"children": [
+														{
+															"id": ":24",
+															"position": "294x33+60+32:5",
+															"type": "mixed",
+															"tags": {
+																"focused": false,
+																"spoken": false,
+																"disabled": false
+															},
+															"visibility": 1,
+															"children": [
+																{
+																	"id": ":25",
+																	"position": "262x33+60+32:6",
+																	"type": "text",
+																	"tags": {
+																		"focused": false,
+																		"spoken": false,
+																		"disabled": false
+																	},
+																	"visibility": 1,
+																	"entities": []
+																}
+															],
+															"entities": []
+														},
+														{
+															"id": ":27",
+															"position": "609x46+355+32:5",
+															"type": "mixed",
+															"tags": {
+																"focused": false,
+																"spoken": false,
+																"disabled": false
+															},
+															"visibility": 1,
+															"children": [
+																{
+																	"id": ":28",
+																	"position": "609x46+355+32:6",
+																	"type": "graphic",
+																	"tags": {
+																		"focused": false,
+																		"spoken": false,
+																		"disabled": false
+																	},
+																	"visibility": 1,
+																	"entities": []
+																}
+															],
+															"entities": []
+														}
+													],
+													"entities": []
+												}
+											],
+											"entities": []
+										}
+									],
+									"entities": []
+								},
+								{
+									"id": ":29",
+									"position": "1024x420+0+94:2",
+									"type": "mixed",
+									"tags": {
+										"focused": false,
+										"spoken": false,
+										"disabled": false,
+										"list": {
+											"itemCount": 3,
+											"lowestIndexSeen": 0,
+											"highestIndexSeen": 2,
+											"lowestOrdinalSeen": 1,
+											"highestOrdinalSeen": 3
+										},
+										"scrollable": {
+											"direction": "horizontal",
+											"allowForward": true,
+											"allowBackwards": false
+										}
+									},
+									"visibility": 1,
+									"children": [
+										{
+											"id": "buyButton:31",
+											"position": "332x300+60+94:3",
+											"type": "mixed",
+											"tags": {
+												"listItem": {
+													"index": 0
+												},
+												"clickable": true,
+												"focused": false,
+												"spoken": false,
+												"disabled": false,
+												"ordinal": 1
+											},
+											"visibility": 1,
+											"children": [
+												{
+													"id": ":33",
+													"position": "332x300+60+94:4",
+													"type": "mixed",
+													"tags": {
+														"focused": false,
+														"spoken": false,
+														"disabled": false
+													},
+													"visibility": 1,
+													"children": [
+														{
+															"id": ":34",
+															"position": "300x300+76+94:5",
+															"type": "graphic",
+															"tags": {
+																"focused": false,
+																"spoken": false,
+																"disabled": false
+															},
+															"visibility": 1,
+															"entities": []
+														}
+													],
+													"entities": []
+												}
+											],
+											"entities": []
+										},
+										{
+											"id": "buyButton:35",
+											"position": "332x300+392+94:3",
+											"type": "mixed",
+											"tags": {
+												"listItem": {
+													"index": 1
+												},
+												"clickable": true,
+												"focused": false,
+												"spoken": false,
+												"disabled": false,
+												"ordinal": 2
+											},
+											"visibility": 1,
+											"children": [
+												{
+													"id": ":37",
+													"position": "332x300+392+94:4",
+													"type": "mixed",
+													"tags": {
+														"focused": false,
+														"spoken": false,
+														"disabled": false
+													},
+													"visibility": 1,
+													"children": [
+														{
+															"id": ":38",
+															"position": "300x300+408+94:5",
+															"type": "graphic",
+															"tags": {
+																"focused": false,
+																"spoken": false,
+																"disabled": false
+															},
+															"visibility": 1,
+															"entities": []
+														}
+													],
+													"entities": []
+												}
+											],
+											"entities": []
+										},
+										{
+											"id": "buyButton:39",
+											"position": "332x300+724+94:3",
+											"type": "mixed",
+											"tags": {
+												"listItem": {
+													"index": 2
+												},
+												"clickable": true,
+												"focused": false,
+												"spoken": false,
+												"disabled": false,
+												"ordinal": 3
+											},
+											"visibility": 0.9,
+											"children": [
+												{
+													"id": ":41",
+													"position": "332x300+724+94:4",
+													"type": "mixed",
+													"tags": {
+														"focused": false,
+														"spoken": false,
+														"disabled": false
+													},
+													"visibility": 0.9,
+													"children": [
+														{
+															"id": ":42",
+															"position": "300x300+740+94:5",
+															"type": "graphic",
+															"tags": {
+																"focused": false,
+																"spoken": false,
+																"disabled": false
+															},
+															"visibility": 0.95,
+															"entities": []
+														}
+													],
+													"entities": []
+												}
+											],
+											"entities": []
+										}
+									],
+									"entities": []
+								},
+								{
+									"id": ":44",
+									"position": "1024x92+0+514:2",
+									"type": "mixed",
+									"tags": {
+										"focused": false,
+										"spoken": false,
+										"disabled": false
+									},
+									"visibility": 0.93,
+									"children": [
+										{
+											"id": ":45",
+											"position": "904x38+60+532:3",
+											"type": "text",
+											"tags": {
+												"focused": false,
+												"spoken": false,
+												"disabled": false
+											},
+											"visibility": 1,
+											"entities": []
+										}
+									],
+									"entities": []
+								}
+							],
+							"entities": []
+						}
+					],
+					"entities": []
+				}
+			]
+		},
+		"System": {
+			"application": {
+				"applicationId": "amzn1.ask.skill.f960213d-3009-4982-bb8b-2c47ad1f1288"
+			},
+			"user": {
+				"userId": "amzn1.ask.account.AFUYATXQTMLIOU2CJXXTASERTA3MAQ2GQ2TMADMLAMHXLN5ZYMOTWLJI6RLC5XUVGODZSM7K2AUKTHWZPDYNB4NHCQFPNZ32HCPH4SLYAHANAFGQ53Y4MHCBSEGPY34KZN5NLMDE2EQN7TBGZRENWMETBXZN6PZW6NVFJ55SEXSS4Z7WJB2AV3EAKRRBIWICDDUJCTRDEJ3S2DQ"
+			},
+			"device": {
+				"deviceId": "amzn1.ask.device.AE2BVOF3XMMXD2KONR2JANR233ZMY7QMAPWLJGGEHSU4ZOX7A45FYDDODJAQ4FUERSJOK7374LDWHG2DJM6XBAYGN2PXTHKUXVYMPYXFWSF3S7PQHDEAXTPC2RRKDIZDR2C4RTPGOUH5WLNQ6PAGRZSALZTU7IOUCMI6MJTZU3YKVL2P5OHVQ",
+				"supportedInterfaces": {
+					"Alexa.Presentation.APL": {
+						"runtime": {
+							"maxVersion": "1.0"
+						}
+					}
+				}
+			},
+			"apiEndpoint": "https://api.amazonalexa.com",
+			"apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLmY5NjAyMTNkLTMwMDktNDk4Mi1iYjhiLTJjNDdhZDFmMTI4OCIsImV4cCI6MTU0OTgzMjA1NiwiaWF0IjoxNTQ5ODMxNzU2LCJuYmYiOjE1NDk4MzE3NTYsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUUyQlZPRjNYTU1YRDJLT05SMkpBTlIyMzNaTVk3UU1BUFdMSkdHRUhTVTRaT1g3QTQ1RllERE9ESkFRNEZVRVJTSk9LNzM3NExEV0hHMkRKTTZYQkFZR04yUFhUSEtVWFZZTVBZWEZXU0YzUzdQUUhERUFYVFBDMlJSS0RJWkRSMkM0UlRQR09VSDVXTE5RNlBBR1JaU0FMWlRVN0lPVUNNSTZNSlRaVTNZS1ZMMlA1T0hWUSIsInVzZXJJZCI6ImFtem4xLmFzay5hY2NvdW50LkFGVVlBVFhRVE1MSU9VMkNKWFhUQVNFUlRBM01BUTJHUTJUTUFETUxBTUhYTE41WllNT1RXTEpJNlJMQzVYVVZHT0RaU003SzJBVUtUSFdaUERZTkI0TkhDUUZQTlozMkhDUEg0U0xZQUhBTkFGR1E1M1k0TUhDQlNFR1BZMzRLWk41TkxNREUyRVFON1RCR1pSRU5XTUVUQlhaTjZQWlc2TlZGSjU1U0VYU1M0WjdXSkIyQVYzRUFLUlJCSVdJQ0REVUpDVFJERUozUzJEUSJ9fQ.a1TaN7p59Q1FxnJzaEpFbsj1foOMW0EOKwf1tyZCUhtQcTKSA13UKID-50PJBHzTOEgtLnSAkTNM3uiDKztC5aWgmV3ejIiVTPqXu2_Bd9BOcz6KrZ31b9SlQy7jjNlu9YARf_mmicwakFOctGBJqu-5N1QrJE36MF5S17Jl1Ws3BrY3P6XeKxuOA9a7aBFgao1-gtuKRzmdQjb6_-hN1ScxufN9Klg2GohWOW8tPbLqPqfOi9A9BQbP2lAqGI1zK0L_g_A9iFwpEj4OoWDLiPKgCRX4DIDJQvTDBbD0mxvmIyIZclHfGsDBxO_Moz0NQtoHTuQdJRVrtwX3zDTAJg"
+		},
+		"Viewport": {
+			"experiences": [
+				{
+					"arcMinuteWidth": 246,
+					"arcMinuteHeight": 144,
+					"canRotate": false,
+					"canResize": false
+				}
+			],
+			"shape": "RECTANGLE",
+			"pixelWidth": 1024,
+			"pixelHeight": 600,
+			"dpi": 160,
+			"currentPixelWidth": 1024,
+			"currentPixelHeight": 600,
+			"touch": [
+				"SINGLE"
+			]
+		}
+	},
+	"request": {
+		"type": "IntentRequest",
+		"requestId": "amzn1.echo-api.request.fa2feb60-abdd-4341-ad49-06cc572c8002",
+		"timestamp": "2019-02-10T20:49:16Z",
+		"locale": "en-US",
+		"intent": {
+			"name": "SelectRecipeIntent",
+			"confirmationStatus": "NONE",
+			"slots": {
+				"Recipe": {
+					"name": "Recipe",
+					"confirmationStatus": "NONE"
+				},
+				"RecipeNumber": {
+					"name": "RecipeNumber",
+					"value": "1",
+					"confirmationStatus": "NONE",
+					"source": "USER"
+				}
+			}
+		}
+	}
+}
