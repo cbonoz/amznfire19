@@ -22,10 +22,12 @@ async function fetchRecipes(searchTerm) {
 
 const ALEXA_TIPS = [
   `Try, "Alexa, step 1"`,
+  'Forgot my commands? Say "help" for more information',
   `Looking for another Recipe? Say, "Alexa start over"`,
-  `Forgot the ingredients? Say, "Alexa list ingredients"`,
-  `Try, "Alexa, continue" to go to the next step`,
-  `Missed a step? Try "Alexa, go back"`
+  `Forgot the ingredients? Say, "list ingredients"`,
+  `Try, "Alexa, continue" to go on to the next step`,
+  `Missed a step? Try saying "go back"`,
+  `What to hear a step again? Say "repeat"`
 ]
 
 const COOKING_TIPS = [

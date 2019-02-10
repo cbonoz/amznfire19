@@ -1,24 +1,19 @@
 const Alexa = require('ask-sdk-core')
 
-const ingredientsDocument = require('./APL/ingredients/document.json')
-const recipeSearchDocument = require('./APL/RecipeSearch/document.json')
-const recipeStepsDocument = require('./APL/RecipeSteps/document.json')
 const renderHelloDocument = require('./APL/Hello')
 const renderIngredientDocument = require('./APL/IngredientList')
 const renderStepDocument = require('./APL/RecipeStep')
 const renderSearchDocument = require('./APL/RecipeSearchResults')
-const renderWelcomeDocument = require('./APL/Welcome')
-const renderSampleDocument = require('./APL/Sample')
 const Fuse = require('fuse.js')
 
 const helper = require('./helper')
 
 const APP_NAME = 'Side Cook'
 
-const ERROR_TEXT = `Sorry, I didn't understand the command. Try asking for a recipe, or say "start over".`
+const ERROR_TEXT = `Sorry, I didn't understand the command. Try asking for a recipe, or say 'start over'.`
 const WELCOME_TEXT = `Welcome to ${APP_NAME}, your personal cooking assistant. Let's find a recipe to make! For example, say "Find Sandwich recipes".`
 const STEP_TEXT = `Sorry I didn't get your step number quite right. For example, say "step 1", or say "next" or "back" to change steps.`
-const FINISHED_TEXT = `Congratulations, You finished the meal! Ask me to search for another recipe, or say "start over"!`
+const FINISHED_TEXT = `Congratulations, You finished the meal! Say exit to finish, or say 'start over' to search for another recipe!`
 const NO_RECIPE_TEXT = `No recipe selected yet! Search for a recipe first. Example, say "Find Cake recipes"`
 const STOP_TEXT = `Let's cook again soon! Goodbye.`
 const HELP_TEXT_DEFAULT = `I can help you discover great recipes and walk through them step by step. Let's find a recipe to make! For example, say "Find Sandwich recipes".`
@@ -83,7 +78,7 @@ const IngredientsRequestHandler = {
     const recipeName = currentRecipe.name
 
     const ingredientString = ingredients.map(({ name, measure }) => `${measure} ${name}`).join(', ')
-    const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}. Would you like to hear those again or start the instructions?`
+    const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}. Say "list ingredients" to hear them again, or say continue to resume cooking.`
 
     if (!supportsAPL(handlerInput)) {
       return handlerInput.responseBuilder
@@ -231,20 +226,21 @@ const SelectRecipeHandler = {
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(repromptText)
-      // .addDirective({
-      //   type: 'Alexa.Presentation.APL.RenderDocument',
-      //   token: 'pagerToken',
-      //   version: '1.0',
-      //   document: recipeStepsDocument,
-      //   datasources: { currentRecipe, "instructionStep": 0 }
-      // })
       .getResponse()
   }
 }
 
-function renderStep(handlerInput, step, currentRecipe) {
+function renderStep(handlerInput, step, currentRecipe, supportsAPL) {
   const stepDescription = currentRecipe.instructions[step - 1]
   const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue or say 'repeat'.`
+
+  if (!supportsAPL) {
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .getResponse()
+  }
+
   const stepBody = {
     recipeName: currentRecipe.name,
     recipeCategory: currentRecipe.recipeCategory,
@@ -283,10 +279,10 @@ const SelectStepHandler = {
       return CustomErrorHandler.handle(handlerInput, NO_RECIPE_TEXT)
     }
 
-    let step = 1
+    let step
 
     if (handlerInput.requestEnvelope.request.intent.name === "InstructionIntent") {
-      step = attributes.instructionStep
+      step = attributes.instructionStep || 1
     } else {
       const slots = handlerInput.requestEnvelope.request.intent.slots
       step = slots && slots.StepNumber && slots.StepNumber.value
@@ -306,16 +302,7 @@ const SelectStepHandler = {
     attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    if (!supportsAPL(handlerInput)) {
-      const stepDescription = currentRecipe.instructions[step - 1]
-      const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue.`
-      return handlerInput.responseBuilder
-        .speak(speechText)
-        .reprompt(speechText)
-        .getResponse()
-    }
-
-    return renderStep(handlerInput, step, currentRecipe)
+    return renderStep(handlerInput, step, currentRecipe, supportsAPL(handlerInput))
   }
 }
 
@@ -349,16 +336,7 @@ const NextStepHandler = {
     attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    if (!supportsAPL(handlerInput)) {
-      const stepDescription = currentRecipe.instructions[step - 1]
-      const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue.`
-      return handlerInput.responseBuilder
-        .speak(speechText)
-        .reprompt(speechText)
-        .getResponse()
-    }
-
-    return renderStep(handlerInput, step, currentRecipe)
+    return renderStep(handlerInput, step, currentRecipe, supportsAPL(handlerInput))
   }
 }
 
@@ -389,14 +367,7 @@ const PrevStepHandler = {
     attributes.instructionStep = step
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
-    if (!supportsAPL(handlerInput)) {
-      return handlerInput.responseBuilder
-        .speak(speechText)
-        .reprompt(speechText)
-        .getResponse()
-    }
-
-    return renderStep(handlerInput, step, currentRecipe)
+    return renderStep(handlerInput, step, currentRecipe, supportsAPL(handlerInput))
   }
 }
 
@@ -427,7 +398,7 @@ const RepeatHandler = {
         .getResponse()
     }
 
-    return renderStep(handlerInput, step, currentRecipe)
+    return renderStep(handlerInput, step, currentRecipe, supportsAPL(handlerInput))
   },
 }
 
@@ -469,7 +440,7 @@ const HelpHandler = {
     const currentRecipe = attributes.currentRecipe
     let speechText
     if (currentRecipe) {
-      speechText = `You currently in the recipe for ${currentRecipe.name}. Try saying ingredient list, or resume cooking by saying a step, for example: 'step 2'. Or say start over. `
+      speechText = `You currently in the making ${currentRecipe.name}. Try saying ingredient list, or select a recipe step, for example: say 'step 2' or 'continue'. Or say 'start over' to select another recipe.`
     } else {
       speechText = HELP_TEXT_DEFAULT
     }
