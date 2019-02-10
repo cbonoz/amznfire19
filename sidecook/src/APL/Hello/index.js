@@ -54,6 +54,7 @@ module.exports = (payload) => {
                 "textAlign": "center",
                 "style": "textStylePrimary2",
                 "text": appWelcome,
+                fontSize: "${viewport.shape == 'round' ? '35' : '40'}",
                 "maxLines": 6
               }
             }
