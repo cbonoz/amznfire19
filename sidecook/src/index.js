@@ -425,6 +425,7 @@ const ExitHandler = {
   handle(handlerInput) {
     // Exit.
     return handlerInput.responseBuilder
+      .withShouldEndSession(true)
       .speak(STOP_TEXT)
       .getResponse()
   },
