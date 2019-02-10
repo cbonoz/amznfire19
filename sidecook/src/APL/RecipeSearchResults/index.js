@@ -107,6 +107,33 @@ module.exports = (payload) => {
                 "HorizontalListItem": {
                     "item": [
                         {
+                            "when": "${viewport.shape == 'round'}",
+                            "type": "Container",
+                            direction: "row",
+                            "paddingLeft": 16,
+                            "paddingRight": 16,
+                            "alignItems": "left",
+                            "justifyContent": "start",
+                            "height": "100%",
+                            "items": [
+                                {
+                                    "type": "Image",
+                                    "source": "${data.image.sources[0].url}",
+                                    "align": "left",
+                                    "height": "15vh",
+                                    "width": "15vh"
+                                },
+                                {
+                                    "type": "Text",
+                                    "text": "<b>${data.textContent.primaryText.text}</b>",
+                                    "style": "textStyleSecondary",
+                                    width: 250,
+                                    "textAlignVertical": "center",
+                                    spacing: 10
+                                }
+                            ]
+                        },
+                        {
                             "type": "Container",
                             "maxWidth": 528,
                             "minWidth": 312,
@@ -142,23 +169,40 @@ module.exports = (payload) => {
                         {
                             "when": "${viewport.shape == 'round'}",
                             "type": "Container",
-                            "height": "100%",
-                            "width": "100%",
+                            "height": "100vh",
+                            "width": "100vw",
                             "items": [
+                                ...helper.header(`Results for ${searchTerm}`),
                                 {
                                     "type": "Sequence",
-                                    "scrollDirection": "horizontal",
-                                    "data": "${listData}",
-                                    "height": "100%",
+                                    "scrollDirection": "vertical",
+                                    "paddingLeft": "@marginLeft",
+                                    "paddingRight": "@marginRight",
+                                    "data": recipeResultList,
+                                    "height": "70vh",
                                     "width": "100%",
                                     "numbered": true,
                                     "item": [
                                         {
-                                            "type": "FullHorizontalListItem",
-                                            "listLength": "${payload.listTemplate2ListData.listPage.listItems.length}"
+                                            "type": "TouchWrapper",
+                                            "id": "buyButton",
+                                            "spacing": 15,
+                                            "onPress": {
+                                              "type": "SendEvent",
+                                              "arguments": [
+                                                "recipe-pressed",
+                                                "${data.ordinalNumber}"
+                                              ]
+                                            },
+                                            item: [
+                                                {
+                                                    "type": "HorizontalListItem",
+                                                }
+                                            ]
                                         }
                                     ]
-                                }
+                                },
+                                helper.footer(`Try, "Alexa, select ${bestRecipes[0].name}"`)
                             ]
                         },
                         {
@@ -189,7 +233,7 @@ module.exports = (payload) => {
                                             },
                                             item: [
                                                 {
-                                                    "type": "HorizontalListItem"
+                                                    "type": "HorizontalListItem",
                                                 }
                                             ]
                                         }
