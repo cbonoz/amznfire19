@@ -52,61 +52,38 @@ module.exports = payload => {
               when: "${viewport.shape == 'round'}",
               type: "Container",
               direction: "row",
-              height: 200,
               width: "100%",
-              separator: true,
               alignItems: "center",
+              separator: true,
               items: [
                 {
                   type: "Text",
                   text: "${ordinal}",
-                  paddingBottom: "20dp",
                   color: "white",
-                  spacing: "5dp"
+                  spacing: "5dp",
+                  fontSize: 20
                 },
                 {
-                  type: "Image",
-                  when: "${image}",
-                  source: "${image}",
-                  height: 150,
-                  width: 150,
-                  spacing: 15,
-                  scale: "best-fit",
-                  align: "top"
+                  type: "Text",
+                  text: "${data.name}",
+                  spacing: 30,
+                  style: "textStyleBody",
+                  fontWeight: "300",
+                  grow: 1,
+                  shrink: 1,
+                  maxLines: 1,
+                  fontSize: 15
                 },
                 {
-                  type: "Container",
-                  direction: "column",
-                  spacing: 25,
-                  items: [
-                    {
-                      type: "Text",
-                      text: "${primaryText}",
-                      style: "textStyleDetail",
-                      grow: 1,
-                      shrink: 1,
-                      fontWeight: "300",
-                      maxLines: 1
-                    },
-                    {
-                      type: "Text",
-                      text: "${secondaryText}",
-                      style: "textStyleCaption",
-                      fontWeight: "300",
-                      grow: 1,
-                      shrink: 1,
-                      maxLines: 1
-                    },
-                    {
-                      type: "Text",
-                      text: "${tertiaryText}",
-                      style: "textStyleDetails",
-                      fontWeight: "300",
-                      grow: 1,
-                      shrink: 1,
-                      maxLines: 1
-                    }
-                  ]
+                  type: "Text",
+                  text: "${data.measure}",
+                  style: "textStyleBody",
+                  fontWeight: "300",
+                  grow: 1,
+                  shrink: 1,
+                  textAlign: "right",
+                  maxLines: 1,
+                  fontSize: 15
                 }
               ]
             },
@@ -125,20 +102,14 @@ module.exports = payload => {
                   spacing: "5dp"
                 },
                 {
-                  type: "Container",
+                  type: "Text",
+                  text: "${data.name}",
                   spacing: 30,
-                  direction: "column",
-                  items: [
-                    {
-                      type: "Text",
-                      text: "${data.name}",
-                      style: "textStyleBody",
-                      fontWeight: "300",
-                      grow: 1,
-                      shrink: 1,
-                      maxLines: 1
-                    }
-                  ]
+                  style: "textStyleBody",
+                  fontWeight: "300",
+                  grow: 1,
+                  shrink: 1,
+                  maxLines: 1
                 },
                 {
                   type: "Text",
