@@ -493,14 +493,14 @@ const baseSkill = skillBuilder
     LaunchRequestHandler,
     SearchRequestHandler,
     SelectStepHandler,
+    StartOverHandler,
     SelectRecipeHandler,
     PrevStepHandler,
     NextStepHandler,
     RepeatHandler,
     HelpHandler,
     ExitHandler,
-    IngredientsRequestHandler,
-    StartOverHandler
+    IngredientsRequestHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
 
