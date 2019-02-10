@@ -491,15 +491,15 @@ const skillBuilder = Alexa.SkillBuilders.custom()
 const baseSkill = skillBuilder
   .addRequestHandlers(
     LaunchRequestHandler,
+    StartOverHandler,
+    HelpHandler,
+    ExitHandler,
     SearchRequestHandler,
     SelectStepHandler,
-    StartOverHandler,
     SelectRecipeHandler,
     PrevStepHandler,
     NextStepHandler,
     RepeatHandler,
-    HelpHandler,
-    ExitHandler,
     IngredientsRequestHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
