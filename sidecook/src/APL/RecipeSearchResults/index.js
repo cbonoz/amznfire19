@@ -13,6 +13,7 @@ module.exports = (payload) => {
     const recipeResultList = bestRecipes.map((recipe, i) => {
         return {
             "listItemIdentifier": recipe.name,
+            "name": recipe.name,
             "ordinalNumber": i+1,
             "textContent": {
                 "primaryText": {
@@ -177,7 +178,20 @@ module.exports = (payload) => {
                                     "numbered": true,
                                     "item": [
                                         {
-                                            "type": "HorizontalListItem"
+                                            "type": "TouchWrapper",
+                                            "id": "buyButton",
+                                            "onPress": {
+                                              "type": "SendEvent",
+                                              "arguments": [
+                                                "recipe-pressed",
+                                                "${data.ordinalNumber}"
+                                              ]
+                                            },
+                                            item: [
+                                                {
+                                                    "type": "HorizontalListItem"
+                                                }
+                                            ]
                                         }
                                     ]
                                 },
