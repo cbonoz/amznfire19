@@ -173,34 +173,60 @@ const SelectRecipeHandler = {
     const attributes = handlerInput.attributesManager.getSessionAttributes()
     const bestRecipes = attributes.bestRecipes
 
+    function searchRecipesWithText(search, recipes) {
+      const searchOptions = {
+        shouldSort: true,
+        threshold: 0.6,
+        location: 0,
+        distance: 100,
+        maxPatternLength: 32,
+        minMatchCharLength: 1,
+        keys: [
+          "name"
+        ]
+      }
+      const fuse = new Fuse(recipes, searchOptions)
+      return fuse.search(search)[0]
+    }
+
+    function searchRecipesWithNumber(number, recipes) {
+      const numberForReal = +number
+
+      // handle out of range
+      if (numberForReal < 0 || numberForReal > recipes.length) {
+       throw new Error('Please select a number between 1 and ' + recipes.length)
+      }
+
+      return recipes[number - 1]
+    }
+
     if (!bestRecipes) {
       return CustomErrorHandler.handle(handlerInput, NO_RECIPE_TEXT)
     }
 
-    const slots = handlerInput.requestEnvelope.request.intent.slots
-    const recipeSearch = slots && slots.Recipe && slots.Recipe.value
 
-    const searchOptions = {
-      shouldSort: true,
-      threshold: 0.6,
-      location: 0,
-      distance: 100,
-      maxPatternLength: 32,
-      minMatchCharLength: 1,
-      keys: [
-        "name"
-      ]
+    const slots = handlerInput.requestEnvelope.request.intent.slots
+
+    let selectedRecipe
+
+    try {
+      if (slots && slots.Recipe && slots.Recipe.value) {
+        selectedRecipe = searchRecipesWithText(slots.Recipe.value, bestRecipes)
+      } else if (slots && slots.RecipeNumber && slots.RecipeNumber.value){
+        selectedRecipe = searchRecipesWithNumber(slots.RecipeNumber.value, bestRecipes)
+      }
+    } catch (e) {
+      return CustomErrorHandler.handle(handlerInput, e.message)
     }
-    const fuse = new Fuse(bestRecipes, searchOptions)
-    const currentRecipe = fuse.search(recipeSearch)[0]
+
     delete attributes.bestRecipes
-    attributes.currentRecipe = currentRecipe
+    attributes.currentRecipe = selectedRecipe
     attributes.instructionStep = 1
     attributes.ingredientStep = 1
     handlerInput.attributesManager.setSessionAttributes(attributes)
 
     const repromptText = "Say ingredient list, or say start the recipe. To cancel, say cancel."
-    const speechText = `You selected ${currentRecipe.name}. ${repromptText}`
+    const speechText = `You selected ${selectedRecipe.name}. ${repromptText}`
 
     return handlerInput.responseBuilder
       .speak(speechText)
