@@ -78,7 +78,8 @@ const IngredientsRequestHandler = {
     const recipeName = currentRecipe.name
 
     const ingredientString = ingredients.map(({ name, measure }) => `${measure} ${name}`).join(', ')
-    const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}. Say "list ingredients" to hear them again, or say continue to resume cooking.`
+    const currentStep = attributes.instructionStep || 1
+    const speechText = `Here are the ingredients for ${recipeName}: ${ingredientString}. Say "list ingredients" to hear them again, or say 'step ${currentStep}' to resume cooking.`
 
     if (!supportsAPL(handlerInput)) {
       return handlerInput.responseBuilder
