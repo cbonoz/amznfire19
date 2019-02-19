@@ -3,13 +3,14 @@ module.exports = (payload) => {
         recipeName, 
         recipeCategory, 
         recipeRegion, 
+        recipeUrl,
         stepNumber, 
         stepDescription, 
         stepCount, 
         stepHint 
     } = payload
 
-    const stepImage = "https://d2o906d8ln7ui1.cloudfront.net/images/details_01.png"
+    const stepImage = recipeUrl || "https://d2o906d8ln7ui1.cloudfront.net/images/details_01.png"
     const backgroundImage = "https://d2o906d8ln7ui1.cloudfront.net/images/BT2_Background.png"
     const logoUrl = "https://raw.githubusercontent.com/cbonoz/amznfire19/master/img/side_cook_white.png"
 
@@ -46,6 +47,7 @@ module.exports = (payload) => {
                         "textSizeBody": 48,
                         "textSizePrimary": 27,
                         "textSizeSecondary": 23,
+                        "textSizeParagraph": 16,
                         "textSizeSecondaryHint": 25
                     }
                 },
@@ -108,6 +110,11 @@ module.exports = (payload) => {
                         "fontSize": "@textSizeSecondary"
                     }
                 },
+                "mixinParagraph": {
+                    "values": {
+                        "fontSize": "@textSizeParagraph"
+                    }
+                },
                 "textStylePrimary": {
                     "extend": [
                         "textStyleBase1",
@@ -118,6 +125,12 @@ module.exports = (payload) => {
                     "extend": [
                         "textStyleBase0",
                         "mixinSecondary"
+                    ]
+                },
+                "textStyleParagraph": {
+                    "extend": [
+                        "textStyleBase1",
+                        "mixinParagraph"
                     ]
                 },
                 "textStyleBody": {
@@ -166,8 +179,8 @@ module.exports = (payload) => {
                                         "type": "Container",
                                         "direction": "column",
                                         "alignItems": "center",
-                                        "paddingLeft": "70dp",
-                                        "paddingRight": "70dp",
+                                        "paddingLeft": "40dp",
+                                        "paddingRight": "40dp",
                                         "items": [
                                             {
                                                 "type": "AlexaHeader",
@@ -183,7 +196,7 @@ module.exports = (payload) => {
                                             },
                                             {
                                                 "type": "Text",
-                                                "text": `Region: ${categoryText}`,
+                                                "text": recipeName,
                                                 "style": "textStylePrimary",
                                                 "width": "70vw",
                                                 "textAlign": "center"
@@ -191,8 +204,8 @@ module.exports = (payload) => {
                                             {
                                                 "type": "Text",
                                                 "text": stepDescription,
-                                                "paddingTop": 20,
-                                                "style": "textStylePrimary",
+                                                "paddingTop": 15,
+                                                "style": "textStyleParagraph",
                                                 "width": "70vw",
                                                 "textAlign": "center"
                                             }

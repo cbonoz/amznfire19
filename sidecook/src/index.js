@@ -232,7 +232,9 @@ const SelectRecipeHandler = {
 }
 
 function renderStep(handlerInput, step, currentRecipe, supportsAPL) {
-  const stepDescription = currentRecipe.instructions[step - 1]
+
+  let stepDescription = currentRecipe.instructions[step - 1]
+  stepDescription = stepDescription.replace(/^\d+\.\s*/, '');
   const speechText = `Step ${step}: ${stepDescription}. Say 'next' to continue or say 'repeat'.`
 
   if (!supportsAPL) {
@@ -243,6 +245,7 @@ function renderStep(handlerInput, step, currentRecipe, supportsAPL) {
   }
 
   const stepBody = {
+    recipeUrl: currentRecipe.thumb,
     recipeName: currentRecipe.name,
     recipeCategory: currentRecipe.recipeCategory,
     recipeRegion: currentRecipe.region,
