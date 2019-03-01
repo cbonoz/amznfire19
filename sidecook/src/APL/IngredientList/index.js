@@ -21,6 +21,44 @@ module.exports = payload => {
           ],
           item: [
             {
+              "when": "${viewport.shape == 'round'}",
+              "type": "ScrollView",
+              "width": "100vw",
+              "height": "100vh",
+              item: [
+                {
+                  type: "Container",
+                  width: "100vw",
+                  height: "100vh",
+                  direction: "column",
+                  items: [
+                    ...helper.header('Ingredients for ' + name),
+                    {
+                      type: "Sequence",
+                      grow: 1,
+                      height: "80vh",
+                      scrollDirection: "vertical",
+                      paddingLeft: "@marginLeft",
+                      paddingRight: "@marginRight",
+                      data: ingredients,
+                      numbered: true,
+                      items: [
+                        {
+                          type: "VerticalListItem"
+                        }
+                      ],
+                      lastItem:[ {
+                        type: "Container",
+                        width: "1vw",
+                        height: "35vh",
+                        direction: "column"
+                        }]
+                    }
+                  ]
+                },
+              ]
+            },
+            {
               type: "Container",
               width: "100vw",
               height: "100vh",

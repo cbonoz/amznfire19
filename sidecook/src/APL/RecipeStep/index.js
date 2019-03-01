@@ -44,8 +44,8 @@ module.exports = (payload) => {
                 {
                     "description": "Standard font sizes",
                     "dimensions": {
-                        "textSizeBody": 48,
-                        "textSizePrimary": 27,
+                        "textSizeBody": 36,
+                        "textSizePrimary": 24,
                         "textSizeSecondary": 23,
                         "textSizeParagraph": 16,
                         "textSizeSecondaryHint": 25
@@ -173,7 +173,7 @@ module.exports = (payload) => {
                             {
                                 "type": "ScrollView",
                                 "width": "100vw",
-                                "height": "100vh",
+                                "height": "80vh",
                                 "item": [
                                     {
                                         "type": "Container",

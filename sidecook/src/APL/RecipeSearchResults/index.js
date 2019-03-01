@@ -185,7 +185,7 @@ module.exports = (payload) => {
                                     "item": [
                                         {
                                             "type": "TouchWrapper",
-                                            "id": "buyButton",
+                                            "id": "selectRecipe",
                                             "spacing": 15,
                                             "onPress": {
                                               "type": "SendEvent",
@@ -223,7 +223,7 @@ module.exports = (payload) => {
                                     "item": [
                                         {
                                             "type": "TouchWrapper",
-                                            "id": "buyButton",
+                                            "id": "selectRecipe",
                                             "onPress": {
                                               "type": "SendEvent",
                                               "arguments": [

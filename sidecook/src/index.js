@@ -130,7 +130,7 @@ const SearchRequestHandler = {
 
     let speechText = ''
     if (bestRecipes.length > 1) {
-      speechText = `Here are the best recipes we found for ${searchTerm}: ${bestRecipeString}`
+      speechText = `Here are the best recipes we found for ${searchTerm}: ${bestRecipeString}. Say 'start ${bestRecipes[0]}' or one of the other options to begin.`
     } else if (bestRecipes.length === 1) {
       speechText = `Here's the best recipe we found for ${searchTerm}: ${bestRecipeString}. Say 'start cooking' to begin, or say 'start over' to find another recipe. `
       attributes.currentRecipe = bestRecipes[0]
@@ -406,6 +406,33 @@ const RepeatHandler = {
   },
 }
 
+const SelectRecipeEventHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request
+    return request.type === 'Alexa.Presentation.APL.UserEvent' && request.arguments && request.arguments[0] === 'recipe-pressed'
+  },
+  handle(handlerInput) {
+    const attributes = handlerInput.attributesManager.getSessionAttributes()
+    const request = handlerInput.requestEnvelope.request
+
+    const selectedIndex = parseInt(request.arguments[1]) - 1
+    const bestRecipes = attributes.bestRecipes
+    const selectedRecipe = bestRecipes[selectedIndex]
+    attributes.currentRecipe = selectedRecipe
+    attributes.instructionStep = 1
+    attributes.ingredientStep = 1
+    handlerInput.attributesManager.setSessionAttributes(attributes)
+
+    const repromptText = "Say ingredient list, or say start the recipe. To cancel, say cancel."
+    const speechText = `You selected ${selectedRecipe.name}. ${repromptText}`
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(repromptText)
+      .getResponse()
+  },
+}
+
 const StartOverHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
@@ -472,7 +499,7 @@ const ErrorHandler = {
 
     // Generic error
     return handlerInput.responseBuilder
-      .speak(ERROR_TEXT)
+      .speak(ERROR_TEXT) // + JSON.stringify(handlerInput.requestEnvelope.request))
       .reprompt(ERROR_TEXT)
       .getResponse()
   },
@@ -505,6 +532,7 @@ const baseSkill = skillBuilder
     PrevStepHandler,
     NextStepHandler,
     RepeatHandler,
+    SelectRecipeEventHandler,
     IngredientsRequestHandler
   )
   .addErrorHandlers(ErrorHandler, CustomErrorHandler)
